@@ -2,12 +2,8 @@ import {
   ArrowRight,
   BrainCircuit,
   Building2,
-  Code2,
-  Database,
   Layers3,
   Network,
-  MessageSquare,
-  Plug,
   Shield,
   Workflow,
 } from "lucide-react";
@@ -18,14 +14,13 @@ import CTASection from "@/components/CTASection";
 import DeveloperSection from "@/components/DeveloperSection";
 import EcosystemArchitecture from "@/components/EcosystemArchitecture";
 import InfrastructureDiagram from "@/components/InfrastructureDiagram";
-import PlatformCard, {
-  type PlatformCardData,
-} from "@/components/PlatformCard";
+import PlatformCard from "@/components/PlatformCard";
 import ProductCard, { type ProductCardData } from "@/components/ProductCard";
 import InnovationSection from "@/components/InnovationSection";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import AfricaNetworkVisual from "@/components/AfricaNetworkVisual";
 import { createPageMetadata } from "@/lib/metadata";
+import { platforms } from "@/lib/infrastructure";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Realtegic",
@@ -33,100 +28,6 @@ export const metadata: Metadata = createPageMetadata({
     "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
   path: "/",
 });
-
-const platforms: PlatformCardData[] = [
-  {
-    name: "AI Platform",
-    slug: "ai-platform",
-    category: "AI INFRASTRUCTURE",
-    description:
-      "Infrastructure for building, deploying and operating intelligent agents, AI applications, memory, tools and workflows.",
-    lifecycleStatus: "research",
-    icon: BrainCircuit,
-    featured: true,
-    route: "/innovation",
-    publicAvailability: false,
-    ctaLabel: "Explore research",
-  },
-  {
-    name: "Communications Cloud",
-    slug: "communications-cloud",
-    category: "COMMUNICATIONS INFRASTRUCTURE",
-    description:
-      "Unified communications infrastructure for WhatsApp, SMS, email, voice, push notifications and future communication channels.",
-    lifecycleStatus: "in-development",
-    icon: MessageSquare,
-    featured: false,
-    route: "/contact",
-    publicAvailability: false,
-    ctaLabel: "View foundation",
-  },
-  {
-    name: "Identity Cloud",
-    slug: "identity-cloud",
-    category: "IDENTITY INFRASTRUCTURE",
-    description:
-      "Authentication, authorization, organizations, user management, permissions and identity infrastructure for modern applications.",
-    lifecycleStatus: "internal",
-    icon: Shield,
-    featured: false,
-    route: "/about",
-    publicAvailability: false,
-    ctaLabel: "Learn more",
-  },
-  {
-    name: "Integration Cloud",
-    slug: "integration-cloud",
-    category: "INTEGRATION INFRASTRUCTURE",
-    description:
-      "A common integration layer connecting applications to APIs, financial systems, business services and external platforms.",
-    lifecycleStatus: "private-preview",
-    icon: Plug,
-    featured: false,
-    route: "/products",
-    publicAvailability: false,
-    ctaLabel: "Request access",
-  },
-  {
-    name: "Automation Cloud",
-    slug: "automation-cloud",
-    category: "AUTOMATION INFRASTRUCTURE",
-    description:
-      "Workflow, trigger, scheduling and business-process automation infrastructure for applications and intelligent agents.",
-    lifecycleStatus: "in-development",
-    icon: Workflow,
-    featured: false,
-    route: "/products",
-    publicAvailability: false,
-    ctaLabel: "See the stack",
-  },
-  {
-    name: "Data & Intelligence Platform",
-    slug: "data-intelligence-platform",
-    category: "DATA INFRASTRUCTURE",
-    description:
-      "Shared data, events, analytics and intelligence infrastructure for Realtegic applications and future customers.",
-    lifecycleStatus: "public-preview",
-    icon: Database,
-    featured: false,
-    route: "/innovation",
-    publicAvailability: true,
-    ctaLabel: "View preview",
-  },
-  {
-    name: "Developer Cloud",
-    slug: "developer-cloud",
-    category: "DEVELOPER INFRASTRUCTURE",
-    description:
-      "Developer infrastructure for APIs, SDKs, developer credentials, sandbox environments, testing, observability, usage management, documentation and tools for building on Realtegic platforms.",
-    lifecycleStatus: "in-development",
-    icon: Code2,
-    featured: false,
-    route: "/developers",
-    publicAvailability: false,
-    ctaLabel: "Explore developer tooling",
-  },
-];
 
 const productPortfolio: ProductCardData[] = [
   {

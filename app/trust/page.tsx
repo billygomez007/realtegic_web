@@ -4,29 +4,31 @@ import { ArrowRight } from "lucide-react";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Terms at Realtegic",
+  title: "Trust at Realtegic",
   description:
-    "Realtegic terms of use and service principles for sites, products, and customer relationships.",
-  path: "/terms",
+    "Realtegic is building trust, security and accountability into the foundation of its infrastructure, products and customer relationships.",
+  path: "/trust",
 });
 
-export default function TermsPage() {
+export default function TrustPage() {
   return (
     <main className="new-home">
       <section className="new-hero infrastructure-hero">
         <div className="new-wrap new-hero-grid">
           <div className="hero-copy">
-            <small className="section-eyebrow">TERMS</small>
+            <small className="section-eyebrow">TRUST & SECURITY</small>
             <h1>
-              Terms are the framework for
-              <span> responsible digital relationships.</span>
+              Trust is designed into the system,
+              <span> not treated as an afterthought.</span>
             </h1>
             <p>
-              Realtegic uses clear operational terms to support our customer, partner and product relationships, while emphasizing that this page is a candid overview rather than a final legal document set.
+              Realtegic is building technology with accountability, secure foundations,
+              clear lifecycle status, and honest communication around what is available,
+              what is in preview, and what is still under development.
             </p>
             <div className="hero-actions">
-              <Link href="/contact" className="rt-btn rt-btn-primary">
-                Contact us
+              <Link href="/security" className="rt-btn rt-btn-primary">
+                Security overview
                 <ArrowRight size={17} />
               </Link>
               <Link href="/privacy" className="rt-btn rt-btn-outline">
@@ -38,10 +40,10 @@ export default function TermsPage() {
           <div className="platform-card platform-card--featured" style={{ padding: 32 }}>
             <div className="platform-card__body">
               <div className="platform-card__content">
-                <small>CORE PRINCIPLES</small>
-                <h3>Clear usage and accountability</h3>
+                <small>OUR APPROACH</small>
+                <h3>Responsible technology</h3>
                 <p>
-                  Our terms and service principles are intended to define responsibilities, access expectations and operational boundaries as we mature the platform and product ecosystem.
+                  We prioritize secure systems, clear operational boundaries, and truthful product status as the basis for long-term trust with customers, partners and teams.
                 </p>
               </div>
             </div>
@@ -55,27 +57,27 @@ export default function TermsPage() {
             <article className="platform-card">
               <div className="platform-card__body">
                 <div className="platform-card__content">
-                  <small>1</small>
-                  <h3>Responsibilities</h3>
-                  <p>Users, customers and partners are expected to use services in line with their intended purpose, applicable law and the service terms in effect.</p>
+                  <small>FOUNDATION</small>
+                  <h3>Security by design</h3>
+                  <p>Security, governance and operational discipline are treated as core product decisions from the earliest stages of design.</p>
                 </div>
               </div>
             </article>
             <article className="platform-card">
               <div className="platform-card__body">
                 <div className="platform-card__content">
-                  <small>2</small>
-                  <h3>Service clarity</h3>
-                  <p>Operational availability and product maturity are communicated honestly, especially where services remain private, preview-only or under active development.</p>
+                  <small>CLARITY</small>
+                  <h3>Honest lifecycle status</h3>
+                  <p>We clearly distinguish between research, internal systems, private preview, public preview and available products so customers know the real status.</p>
                 </div>
               </div>
             </article>
             <article className="platform-card">
               <div className="platform-card__body">
                 <div className="platform-card__content">
-                  <small>3</small>
-                  <h3>Updates</h3>
-                  <p>Terms and policies may evolve as the business and technology platform mature, and it is important that customers review current versions when engaging us.</p>
+                  <small>ACCOUNTABILITY</small>
+                  <h3>Transparent communication</h3>
+                  <p>Customer, partner and stakeholder communication remains candid, especially where public access is limited or still under development.</p>
                 </div>
               </div>
             </article>

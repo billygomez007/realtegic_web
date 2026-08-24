@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -64,14 +65,16 @@ export default function Footer() {
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/security">Security</Link>
-          <span>Accra, Ghana</span>
-          <a href="mailto:info@realtegicworks.com">info@realtegicworks.com</a>
-          <span>Plot 16, Atlantic Towers</span>
-          <span>Liberation Road, Accra, Ghana</span>
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          <span>{siteConfig.officeAddress[0]}</span>
+          <span>{siteConfig.officeAddress[1]}</span>
           <span>
-            <a href="tel:+233302952240">+233 (0) 30 295 2240</a>
-            {" / "}
-            <a href="tel:+233502820002">050 282 0002</a>
+            {siteConfig.phoneNumbers.map((phone, index) => (
+              <span key={phone.href}>
+                {index > 0 ? " / " : ""}
+                <a href={phone.href}>{phone.number}</a>
+              </span>
+            ))}
           </span>
         </div>
       </div>

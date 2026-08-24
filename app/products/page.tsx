@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BrainCircuit,
-  Building2,
-  CheckCircle2,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { createPageMetadata } from "@/lib/metadata";
+import { products } from "@/lib/products";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Products at Realtegic",
@@ -15,39 +10,6 @@ export const metadata: Metadata = createPageMetadata({
     "Discover Realtegic products and applications across AI, property technology and connected digital platforms.",
   path: "/products",
 });
-
-const products = [
-  {
-    number: "01",
-    status: "AVAILABLE",
-    category: "AI WORKFORCE PLATFORM",
-    title: "Kuba AI",
-    description:
-      "An intelligent AI workforce that helps businesses automate customer communication, engagement and everyday operations.",
-    icon: BrainCircuit,
-    features: [
-      "AI customer engagement",
-      "Multi-channel communication",
-      "Business automation",
-      "AI agents and workflows",
-    ],
-  },
-  {
-    number: "02",
-    status: "IN DEVELOPMENT",
-    category: "PROPERTY TECHNOLOGY",
-    title: "Realtegic Property",
-    description:
-      "An intelligent property management platform for property owners, managers and developers to manage their entire portfolio from one place.",
-    icon: Building2,
-    features: [
-      "Property management",
-      "Tenant management",
-      "Maintenance automation",
-      "AI-powered operations",
-    ],
-  },
-];
 
 export default function ProductsPage() {
   return (
@@ -123,7 +85,7 @@ export default function ProductsPage() {
                         ))}
                       </div>
 
-                      <Link href="/contact" className="product-link">
+                      <Link href={`/products/${product.slug}`} className="product-link">
                         Learn more
                         <ArrowRight size={17} />
                       </Link>
