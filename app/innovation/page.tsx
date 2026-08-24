@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -9,6 +10,14 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Innovation at Realtegic",
+  description:
+    "Explore Realtegic Labs and the ideas, research and emerging technologies shaping future products.",
+  path: "/innovation",
+});
 
 const focusAreas = [
   {

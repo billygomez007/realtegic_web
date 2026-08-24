@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -8,6 +9,15 @@ import {
   MessageSquare,
   Sparkles,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact Realtegic",
+  description:
+    "Contact Realtegic to discuss products, partnerships or custom technology solutions.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -214,8 +224,22 @@ export default function ContactPage() {
             <div className="contact-direct-card">
               <Mail size={22} />
               <small>EMAIL</small>
-              <strong>hello@realtegic.com</strong>
+              <a href={`mailto:${siteConfig.email}`} className="contact-direct-link">
+                {siteConfig.email}
+              </a>
               <span>We&apos;ll get back to you as soon as possible.</span>
+            </div>
+
+            <div className="contact-direct-card contact-direct-card--stacked">
+              <small>OFFICE</small>
+              <span>{siteConfig.officeAddress[0]}</span>
+              <span>{siteConfig.officeAddress[1]}</span>
+              <small>PHONE</small>
+              {siteConfig.phoneNumbers.map((phone) => (
+                <a key={phone.href} href={phone.href} className="contact-direct-link">
+                  {phone.number}
+                </a>
+              ))}
             </div>
 
           </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -7,6 +8,14 @@ import {
   Rocket,
   Target,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "About Realtegic",
+  description:
+    "Learn about Realtegic, the technology company building digital infrastructure and intelligent applications for businesses, developers, institutions and enterprises.",
+  path: "/about",
+});
 
 const values = [
   {
@@ -50,9 +59,9 @@ export default function AboutPage() {
           </h1>
 
           <p>
-            Realtegic is a technology and innovation company focused on
-            building intelligent products, AI-powered platforms and digital
-            systems that solve meaningful problems.
+            Realtegic is a technology company building foundational digital
+            infrastructure and intelligent applications for businesses,
+            developers, institutions and enterprises.
           </p>
         </div>
       </section>
@@ -85,7 +94,7 @@ export default function AboutPage() {
               </p>
 
               <p>
-                We are not interested in building technology for technology's
+                We are not interested in building technology for technology&apos;s
                 sake. We look for important problems, understand the people
                 affected by them and build systems that can make a measurable
                 difference.
@@ -179,15 +188,15 @@ export default function AboutPage() {
               <div className="about-label">OUR AMBITION</div>
 
               <h2>
-                Built in Africa.
+                Built for a
                 <br />
-                <span>Designed for the world.</span>
+                <span>connected world.</span>
               </h2>
 
               <p>
-                Realtegic is building from Africa with a global mindset. We
-                believe world-class technology can be created here and
-                delivered anywhere.
+                Realtegic is building technology designed to scale across
+                markets, systems and industries while remaining practical,
+                adaptable and interoperable.
               </p>
 
               <p>
