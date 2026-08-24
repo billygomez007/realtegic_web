@@ -65,7 +65,14 @@ export default function Footer() {
           <Link href="/terms">Terms</Link>
           <Link href="/security">Security</Link>
           <span>Accra, Ghana</span>
-          <span>hello@realtegic.com</span>
+          <a href="mailto:info@realtegicworks.com">info@realtegicworks.com</a>
+          <span>Plot 16, Atlantic Towers</span>
+          <span>Liberation Road, Accra, Ghana</span>
+          <span>
+            <a href="tel:+233302952240">+233 (0) 30 295 2240</a>
+            {" / "}
+            <a href="tel:+233502820002">050 282 0002</a>
+          </span>
         </div>
       </div>
 
