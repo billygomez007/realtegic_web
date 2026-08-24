@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BrainCircuit,
   Building2,
+  Code2,
   Database,
   Layers3,
   Network,
@@ -29,7 +30,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Realtegic",
   description:
-    "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+    "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
   path: "/",
 });
 
@@ -111,6 +112,19 @@ const platforms: PlatformCardData[] = [
     route: "/innovation",
     publicAvailability: true,
     ctaLabel: "View preview",
+  },
+  {
+    name: "Developer Cloud",
+    slug: "developer-cloud",
+    category: "DEVELOPER INFRASTRUCTURE",
+    description:
+      "Developer infrastructure for APIs, SDKs, developer credentials, sandbox environments, testing, observability, usage management, documentation and tools for building on Realtegic platforms.",
+    lifecycleStatus: "in-development",
+    icon: Code2,
+    featured: false,
+    route: "/developers",
+    publicAvailability: false,
+    ctaLabel: "Explore developer tooling",
   },
 ];
 
@@ -220,18 +234,17 @@ export default function Home() {
         <div className="new-wrap new-hero-grid">
           <div className="hero-copy">
             <SectionEyebrow>
-              BUILDING AFRICA&apos;S TECHNOLOGY INFRASTRUCTURE
+              BUILDING WHAT COMES NEXT
             </SectionEyebrow>
 
             <h1>
-              The Technology Behind Africa&apos;s{" "}
-              <span>Digital Future.</span>
+              Building the Technology Behind{" "}
+              <span>What Comes Next.</span>
             </h1>
 
             <p>
-              We build the digital infrastructure and intelligent platforms
-              that power businesses, institutions and developers across Africa
-              and beyond.
+              We build digital infrastructure and intelligent platforms that power
+              businesses, developers and institutions.
             </p>
 
             <div className="hero-actions">
@@ -283,8 +296,8 @@ export default function Home() {
 
             <p>
               The foundational technologies powering Realtegic products and,
-              eventually, the applications businesses and developers build
-              across Africa.
+              over time, the applications businesses and developers build on
+              Realtegic infrastructure.
             </p>
           </div>
 

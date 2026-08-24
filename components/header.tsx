@@ -18,6 +18,7 @@ const navigationItems = [
       { label: "Integration Cloud", href: "/#integration-cloud" },
       { label: "Automation Cloud", href: "/#automation-cloud" },
       { label: "Data & Intelligence", href: "/#data-intelligence-platform" },
+      { label: "Developer Cloud", href: "/#developer-cloud" },
     ],
   },
   {

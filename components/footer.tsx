@@ -17,9 +17,7 @@ export default function Footer() {
             />
           </Link>
 
-          <p>
-            Building the technology behind Africa&apos;s digital future.
-          </p>
+          <p>Building the technology behind what comes next.</p>
         </div>
 
         <div className="footer-column">
@@ -30,6 +28,7 @@ export default function Footer() {
           <Link href="/#integration-cloud">Integrations</Link>
           <Link href="/#automation-cloud">Automation</Link>
           <Link href="/#data-intelligence-platform">Data &amp; Intelligence</Link>
+          <Link href="/#developer-cloud">Developer Cloud</Link>
         </div>
 
         <div className="footer-column">

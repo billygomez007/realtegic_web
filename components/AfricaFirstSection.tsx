@@ -6,24 +6,26 @@ export default function AfricaFirstSection() {
     <section className="africa-first-section" id="africa">
       <div className="new-wrap africa-first-grid">
         <div className="africa-first-copy">
-          <SectionEyebrow>BUILT IN AFRICA</SectionEyebrow>
+          <SectionEyebrow>GLOBAL TECHNOLOGY</SectionEyebrow>
 
-          <h2>Built in Africa. Built for the World.</h2>
+          <h2>Built for a Connected World.</h2>
 
           <p>
-            Realtegic begins with the realities of African markets while
-            designing technology capable of global operation.
+            Technology should work across markets, systems and industries.
+            Realtegic is building adaptable infrastructure designed to connect
+            businesses, applications, people and institutions wherever they
+            operate.
           </p>
 
           <ul className="africa-first-list">
-            <li>Mobile-first markets</li>
-            <li>Local communication channels</li>
-            <li>Digital payments</li>
-            <li>Local languages</li>
-            <li>Fragmented business systems</li>
-            <li>Emerging-market infrastructure</li>
-            <li>Public-sector transformation</li>
             <li>Global scalability</li>
+            <li>Interoperability</li>
+            <li>Cross-market integration</li>
+            <li>Modern communications</li>
+            <li>Developer ecosystems</li>
+            <li>Enterprise systems</li>
+            <li>Digital payments</li>
+            <li>Adaptable infrastructure</li>
           </ul>
         </div>
 

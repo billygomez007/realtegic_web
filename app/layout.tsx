@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     template: "%s | Realtegic",
   },
   description:
-    "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+    "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
   openGraph: {
     title: "Realtegic",
     description:
-      "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+      "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
     siteName: "Realtegic",
     type: "website",
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Realtegic",
     description:
-      "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+      "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
   },
 };
 

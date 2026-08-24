@@ -42,9 +42,8 @@ export default function InnovationSection() {
 
           <p>
             The Realtegic Labs section is prepared for future content around AI
-            research, African language technology, intelligent systems, new
-            infrastructure, experimental products, developer research and
-            emerging technologies.
+            research, intelligent systems, new infrastructure, experimental
+            products, developer research and emerging technologies.
           </p>
 
           <div className="innovation-labs-copy__footer">
