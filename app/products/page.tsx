@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -6,6 +7,14 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Products at Realtegic",
+  description:
+    "Discover Realtegic products and applications across AI, property technology and connected digital platforms.",
+  path: "/products",
+});
 
 const products = [
   {

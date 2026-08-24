@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import ComingSoonPage from "@/components/ComingSoonPage";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Company | Realtegic",
-  description: "Company information and expansion details are coming soon.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Company at Realtegic",
+  description: "Company information, milestones and updates are coming soon.",
+  path: "/company",
+});
 
 export default function CompanyPage() {
   return (

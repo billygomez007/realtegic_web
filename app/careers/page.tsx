@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import ComingSoonPage from "@/components/ComingSoonPage";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Careers | Realtegic",
-  description: "Careers information and open roles are coming soon.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Careers at Realtegic",
+  description: "Open roles and hiring information for Realtegic are coming soon.",
+  path: "/careers",
+});
 
 export default function CareersPage() {
   return (

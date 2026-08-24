@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import ComingSoonPage from "@/components/ComingSoonPage";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Security | Realtegic",
-  description: "Security information is coming soon.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Security at Realtegic",
+  description:
+    "Security practices and information for Realtegic are coming soon.",
+  path: "/security",
+});
 
 export default function SecurityPage() {
   return (

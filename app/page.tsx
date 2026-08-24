@@ -10,6 +10,7 @@ import {
   Shield,
   Workflow,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Button from "@/components/Button";
 import AfricaFirstSection from "@/components/AfricaFirstSection";
 import CTASection from "@/components/CTASection";
@@ -23,6 +24,14 @@ import ProductCard, { type ProductCardData } from "@/components/ProductCard";
 import InnovationSection from "@/components/InnovationSection";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import AfricaNetworkVisual from "@/components/AfricaNetworkVisual";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Realtegic",
+  description:
+    "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+  path: "/",
+});
 
 const platforms: PlatformCardData[] = [
   {

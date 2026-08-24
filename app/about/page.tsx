@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -7,6 +8,14 @@ import {
   Rocket,
   Target,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "About Realtegic",
+  description:
+    "Learn about Realtegic, the technology and innovation company building infrastructure platforms and applications across Africa and the world.",
+  path: "/about",
+});
 
 const values = [
   {

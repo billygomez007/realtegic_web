@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -8,6 +9,14 @@ import {
   MessageSquare,
   Sparkles,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact Realtegic",
+  description:
+    "Contact Realtegic to discuss products, partnerships or custom technology solutions.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
