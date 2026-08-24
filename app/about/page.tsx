@@ -51,8 +51,8 @@ export default function AboutPage() {
 
           <p>
             Realtegic is a technology and innovation company focused on
-            building intelligent products, AI-powered platforms and digital
-            systems that solve meaningful problems.
+            building infrastructure platforms and applications that solve
+            meaningful problems across Africa and the world.
           </p>
         </div>
       </section>
@@ -85,7 +85,7 @@ export default function AboutPage() {
               </p>
 
               <p>
-                We are not interested in building technology for technology's
+                We are not interested in building technology for technology&apos;s
                 sake. We look for important problems, understand the people
                 affected by them and build systems that can make a measurable
                 difference.

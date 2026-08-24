@@ -6,7 +6,20 @@ import Footer from "@/components/footer";
 export const metadata: Metadata = {
   title: "Realtegic | Technology • Innovation • Impact",
   description:
-    "Realtegic builds intelligent technology products, AI-powered platforms and digital infrastructure for modern businesses.",
+    "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+  openGraph: {
+    title: "Realtegic | Technology • Innovation • Impact",
+    description:
+      "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+    siteName: "Realtegic",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Realtegic | Technology • Innovation • Impact",
+    description:
+      "Realtegic builds the infrastructure and applications powering Africa's digital future.",
+  },
 };
 
 export default function RootLayout({

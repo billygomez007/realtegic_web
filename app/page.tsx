@@ -1,117 +1,294 @@
-import Link from "next/link";
 import {
   ArrowRight,
   BrainCircuit,
   Building2,
-  CheckCircle2,
-  Globe2,
+  Database,
   Layers3,
   Network,
-  Sparkles,
+  MessageSquare,
+  Plug,
+  Shield,
   Workflow,
 } from "lucide-react";
+import Button from "@/components/Button";
+import AfricaFirstSection from "@/components/AfricaFirstSection";
+import CTASection from "@/components/CTASection";
+import DeveloperSection from "@/components/DeveloperSection";
+import EcosystemArchitecture from "@/components/EcosystemArchitecture";
+import InfrastructureDiagram from "@/components/InfrastructureDiagram";
+import PlatformCard, {
+  type PlatformCardData,
+} from "@/components/PlatformCard";
+import ProductCard, { type ProductCardData } from "@/components/ProductCard";
+import InnovationSection from "@/components/InnovationSection";
+import SectionEyebrow from "@/components/SectionEyebrow";
+import AfricaNetworkVisual from "@/components/AfricaNetworkVisual";
 
-const products = [
+const platforms: PlatformCardData[] = [
   {
-    name: "Kuba AI",
-    category: "AI WORKFORCE",
+    name: "AI Platform",
+    slug: "ai-platform",
+    category: "AI INFRASTRUCTURE",
     description:
-      "AI agents that communicate, assist customers and automate business operations across channels.",
+      "Infrastructure for building, deploying and operating intelligent agents, AI applications, memory, tools and workflows.",
+    lifecycleStatus: "research",
     icon: BrainCircuit,
+    featured: true,
+    route: "/innovation",
+    publicAvailability: false,
+    ctaLabel: "Explore research",
   },
   {
-    name: "Realtegic Property",
+    name: "Communications Cloud",
+    slug: "communications-cloud",
+    category: "COMMUNICATIONS INFRASTRUCTURE",
+    description:
+      "Unified communications infrastructure for WhatsApp, SMS, email, voice, push notifications and future communication channels.",
+    lifecycleStatus: "in-development",
+    icon: MessageSquare,
+    featured: false,
+    route: "/contact",
+    publicAvailability: false,
+    ctaLabel: "View foundation",
+  },
+  {
+    name: "Identity Cloud",
+    slug: "identity-cloud",
+    category: "IDENTITY INFRASTRUCTURE",
+    description:
+      "Authentication, authorization, organizations, user management, permissions and identity infrastructure for modern applications.",
+    lifecycleStatus: "internal",
+    icon: Shield,
+    featured: false,
+    route: "/about",
+    publicAvailability: false,
+    ctaLabel: "Learn more",
+  },
+  {
+    name: "Integration Cloud",
+    slug: "integration-cloud",
+    category: "INTEGRATION INFRASTRUCTURE",
+    description:
+      "A common integration layer connecting applications to APIs, financial systems, business services and external platforms.",
+    lifecycleStatus: "private-preview",
+    icon: Plug,
+    featured: false,
+    route: "/products",
+    publicAvailability: false,
+    ctaLabel: "Request access",
+  },
+  {
+    name: "Automation Cloud",
+    slug: "automation-cloud",
+    category: "AUTOMATION INFRASTRUCTURE",
+    description:
+      "Workflow, trigger, scheduling and business-process automation infrastructure for applications and intelligent agents.",
+    lifecycleStatus: "in-development",
+    icon: Workflow,
+    featured: false,
+    route: "/products",
+    publicAvailability: false,
+    ctaLabel: "See the stack",
+  },
+  {
+    name: "Data & Intelligence Platform",
+    slug: "data-intelligence-platform",
+    category: "DATA INFRASTRUCTURE",
+    description:
+      "Shared data, events, analytics and intelligence infrastructure for Realtegic applications and future customers.",
+    lifecycleStatus: "public-preview",
+    icon: Database,
+    featured: false,
+    route: "/innovation",
+    publicAvailability: true,
+    ctaLabel: "View preview",
+  },
+];
+
+const productPortfolio: ProductCardData[] = [
+  {
+    productName: "SuperKuba",
+    displayName: "SuperKuba",
+    slug: "superkuba",
+    category: "AI WORKFORCE PLATFORM",
+    description:
+      "Create, deploy and manage intelligent digital employees that work alongside your human team.",
+    availabilityStatus: "available",
+    website: "Realtegic.com",
+    route: "/products",
+    visual: "AI workforce",
+    logo: BrainCircuit,
+    featured: true,
+    ctaLabel: "Visit SuperKuba",
+    market: "Business",
+  },
+  {
+    productName: "PropertyOS",
+    displayName: "PropertyOS",
+    slug: "propertyos",
     category: "PROPERTY TECHNOLOGY",
     description:
-      "An intelligent operating system for property owners, managers and developers.",
-    icon: Building2,
+      "AI-powered property management, payments, tenant experiences, maintenance and property marketplace infrastructure.",
+    availabilityStatus: "in-development",
+    website: "Realtegic.com",
+    route: "/products",
+    visual: "Property OS",
+    logo: Building2,
+    featured: false,
+    ctaLabel: "Explore product",
+    market: "Property",
   },
-];
-
-const capabilities = [
-  ["AI & Intelligence", "Systems that understand, reason and act."],
-  ["Automation", "Turn repetitive processes into intelligent workflows."],
-  ["Digital Platforms", "Build connected experiences around your business."],
-  ["Communication", "Bring customers, teams and channels together."],
-  ["Data & Analytics", "Turn business information into useful decisions."],
-  ["Integrations", "Connect the systems your organization already uses."],
-];
-
-const industries = [
-  "Real Estate",
-  "Travel & Tourism",
-  "Commerce & Retail",
-  "Logistics & Mobility",
-  "Enterprise",
-  "Government",
-  "Education",
-  "Health & Human Services",
+  {
+    productName: "TrustPay",
+    displayName: "TrustPay",
+    slug: "trustpay",
+    category: "DIGITAL TRUST & ESCROW",
+    description:
+      "Digital trust infrastructure designed to make transactions between buyers and sellers safer.",
+    availabilityStatus: "research",
+    website: "Realtegic.com",
+    route: "/products",
+    visual: "Trust layer",
+    logo: Shield,
+    featured: false,
+    ctaLabel: "Explore concept",
+    market: "Finance",
+  },
+  {
+    productName: "Institution Platform",
+    displayName: "Institution Platform",
+    slug: "institution-platform",
+    category: "INSTITUTION MANAGEMENT",
+    description:
+      "Intelligent operating infrastructure for schools, universities, churches and other institutions.",
+    availabilityStatus: "private-preview",
+    website: "Realtegic.com",
+    route: "/products",
+    visual: "Institution OS",
+    logo: Layers3,
+    featured: false,
+    ctaLabel: "Request preview",
+    market: "Institutions",
+  },
+  {
+    productName: "Government Technology",
+    displayName: "Government Technology",
+    slug: "government-technology",
+    category: "GOVTECH",
+    description:
+      "Digital infrastructure and intelligent services designed to improve how citizens, institutions and government interact.",
+    availabilityStatus: "research",
+    website: "Realtegic.com",
+    route: "/innovation",
+    visual: "GovTech",
+    logo: Workflow,
+    featured: false,
+    ctaLabel: "See research",
+    market: "Government",
+  },
+  {
+    productName: "Mobility Platform",
+    displayName: "Mobility Platform",
+    slug: "mobility-platform",
+    category: "MOBILITY & TRANSPORTATION",
+    description:
+      "Digital infrastructure for route-based transport, booking, payments, fleet operations and future mobility services.",
+    availabilityStatus: "public-preview",
+    website: "Realtegic.com",
+    route: "/innovation",
+    visual: "Mobility stack",
+    logo: Network,
+    featured: false,
+    ctaLabel: "View preview",
+    market: "Mobility",
+  },
 ];
 
 export default function Home() {
   return (
     <main className="new-home">
-
       <section className="new-hero">
+        <div className="new-wrap new-hero-grid">
+          <div className="hero-copy">
+            <SectionEyebrow>
+              BUILDING AFRICA&apos;S TECHNOLOGY INFRASTRUCTURE
+            </SectionEyebrow>
+
+            <h1>
+              The Technology Behind Africa&apos;s{" "}
+              <span>Digital Future.</span>
+            </h1>
+
+            <p>
+              We build the digital infrastructure and intelligent platforms
+              that power businesses, institutions and developers across Africa
+              and beyond.
+            </p>
+
+            <div className="hero-actions">
+              <Button asLink href="#platforms" variant="primary" size="lg">
+                Explore Our Platforms
+                <ArrowRight size={17} />
+              </Button>
+
+              <Button asLink href="/products" variant="secondary" size="lg">
+                Explore Our Products
+              </Button>
+            </div>
+          </div>
+
+          <AfricaNetworkVisual />
+        </div>
+      </section>
+
+      <section className="positioning-section" id="positioning">
+        <div className="new-wrap positioning-grid">
+          <div className="positioning-copy">
+            <SectionEyebrow>WHAT WE BUILD</SectionEyebrow>
+
+            <h2>
+              We Don&apos;t Just Build Products. We Build the Infrastructure
+              Behind Them.
+            </h2>
+
+            <p>
+              Realtegic develops reusable technology infrastructure first, then
+              uses that foundation to build its own applications and products.
+            </p>
+          </div>
+
+          <InfrastructureDiagram />
+        </div>
+      </section>
+
+      <section className="platforms-section" id="platforms">
         <div className="new-wrap">
-          <div className="hero-badge">
-            <span />
-            TECHNOLOGY • INNOVATION • IMPACT
+          <div className="section-intro">
+            <div>
+              <SectionEyebrow>OUR TECHNOLOGY INFRASTRUCTURE</SectionEyebrow>
+              <h2>
+                Infrastructure
+                <span> Platforms</span>
+              </h2>
+            </div>
+
+            <p>
+              The foundational technologies powering Realtegic products and,
+              eventually, the applications businesses and developers build
+              across Africa.
+            </p>
           </div>
 
-          <h1>
-            Building the
-            <br />
-            <span>intelligence behind</span>
-            <br />
-            modern business.
-          </h1>
-
-          <p>
-            Realtegic builds AI-powered products, intelligent platforms and
-            digital infrastructure that help organizations work smarter,
-            serve better and scale faster.
-          </p>
-
-          <div className="hero-actions">
-            <Link href="/products" className="primary-action">
-              Explore our products
-              <ArrowRight size={17} />
-            </Link>
-
-            <Link href="/contact" className="secondary-action">
-              Talk to Realtegic
-            </Link>
-          </div>
-
-          <div className="hero-system">
-            <div className="system-center">
-              <BrainCircuit size={42} />
-              <strong>REALTEGIC</strong>
-              <small>INTELLIGENCE LAYER</small>
-            </div>
-
-            <div className="system-node system-one">
-              <Workflow size={17} />
-              Automation
-            </div>
-
-            <div className="system-node system-two">
-              <Network size={17} />
-              Platforms
-            </div>
-
-            <div className="system-node system-three">
-              <Globe2 size={17} />
-              Channels
-            </div>
+          <div className="platform-grid">
+            {platforms.map((platform) => (
+              <PlatformCard key={platform.slug} platform={platform} />
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="suite-section">
+      <section className="suite-section" id="ecosystem">
         <div className="new-wrap">
-
           <div className="section-intro">
             <div>
               <small>THE REALTEGIC ECOSYSTEM</small>
@@ -150,227 +327,68 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-products">
+      <section className="products-section" id="products">
         <div className="new-wrap">
-
-          <div className="section-topline">
+          <div className="section-intro section-intro--dark">
             <div>
-              <small>OUR PRODUCTS</small>
-              <h2>Technology that solves.</h2>
-            </div>
-
-            <Link href="/products">
-              View all products
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="home-product-grid">
-            {products.map((product) => {
-              const Icon = product.icon;
-
-              return (
-                <Link
-                  href="/products"
-                  className="home-product-card"
-                  key={product.name}
-                >
-                  <div className="home-product-icon">
-                    <Icon size={32} />
-                  </div>
-
-                  <small>{product.category}</small>
-
-                  <h3>{product.name}</h3>
-
-                  <p>{product.description}</p>
-
-                  <span>
-                    Explore product
-                    <ArrowRight size={16} />
-                  </span>
-                </Link>
-              );
-            })}
-
-            <div className="home-product-coming">
-              <Sparkles size={28} />
-              <small>INNOVATION PIPELINE</small>
-              <h3>More products are coming.</h3>
-              <p>
-                New ideas are being researched and developed across industries.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="solutions-section">
-        <div className="new-wrap">
-
-          <div className="section-intro">
-            <div>
-              <small>WHAT WE HELP BUSINESSES DO</small>
+              <SectionEyebrow>BUILT BY REALTEGIC</SectionEyebrow>
               <h2>
-                From complexity
-                <span> to clarity.</span>
+                Products
+                <span> & Applications</span>
               </h2>
             </div>
 
             <p>
-              Realtegic technology can sit at the center of your operation,
-              connecting the people, processes and systems that keep your
-              business moving.
+              Technology built to solve real problems across business,
+              property, finance, government, institutions and everyday life.
             </p>
           </div>
 
-          <div className="capability-grid">
-            {capabilities.map(([title, text], index) => (
-              <div key={title}>
-                <span>0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <CheckCircle2 size={17} />
-              </div>
+          <div className="product-grid">
+            {productPortfolio.map((product) => (
+              <ProductCard key={product.slug} product={product} />
             ))}
           </div>
 
+          <div className="products-footer">
+            <p>
+              A growing portfolio of products that share the same infrastructure
+              foundation and design principles.
+            </p>
+
+            <Button asLink href="/products" variant="secondary" size="lg">
+              View All Products
+            </Button>
+          </div>
         </div>
       </section>
 
-      <section className="industry-section">
+      <section className="ecosystem-section">
         <div className="new-wrap">
-
-          <div className="industry-heading">
+          <div className="ecosystem-heading">
             <div>
-              <small>INDUSTRIES WE SERVE</small>
+              <SectionEyebrow>REALTEGIC ECOSYSTEM</SectionEyebrow>
               <h2>
-                Technology that
-                <span> adapts to you.</span>
+                One Technology Foundation.
+                <span> Many Possibilities.</span>
               </h2>
             </div>
 
             <p>
-              Different industries have different problems. Our technology
-              foundations are designed to adapt to the environment in which
-              they operate.
+              Realtegic builds a shared technology foundation that powers our
+              products today and opens room for future applications tomorrow.
             </p>
           </div>
 
-          <div className="industry-pills">
-            {industries.map((industry) => (
-              <Link href="/industries" key={industry}>
-                {industry}
-                <ArrowRight size={15} />
-              </Link>
-            ))}
-          </div>
-
-          <Link href="/industries" className="industry-button">
-            Explore industries
-            <ArrowRight size={17} />
-          </Link>
-
+          <EcosystemArchitecture />
         </div>
       </section>
 
-      <section className="technology-section">
-        <div className="new-wrap technology-grid">
+      <DeveloperSection />
+      <AfricaFirstSection />
+      <InnovationSection />
 
-          <div>
-            <small>THE TECHNOLOGY FOUNDATION</small>
-
-            <h2>
-              Powerful alone.
-              <br />
-              <span>Better together.</span>
-            </h2>
-
-            <p>
-              Our products are designed to work independently while sharing a
-              common technology philosophy. As the ecosystem grows, the
-              products become more powerful together.
-            </p>
-          </div>
-
-          <div className="technology-stack">
-            <div>
-              <BrainCircuit />
-              <strong>Artificial Intelligence</strong>
-              <span>Intelligence across the ecosystem</span>
-            </div>
-
-            <div>
-              <Workflow />
-              <strong>Automation Engine</strong>
-              <span>Processes that run intelligently</span>
-            </div>
-
-            <div>
-              <Network />
-              <strong>Connected Systems</strong>
-              <span>Data, people and platforms connected</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="innovation-section">
-        <div className="new-wrap innovation-grid">
-
-          <div className="innovation-visual">
-            <Sparkles size={42} />
-            <span>REALTEGIC</span>
-            <strong>INNOVATION LAB</strong>
-          </div>
-
-          <div>
-            <small>RESEARCH & INNOVATION</small>
-
-            <h2>
-              We are not only
-              <span> building today.</span>
-            </h2>
-
-            <p>
-              The Realtegic Innovation Lab explores emerging technologies,
-              business models and opportunities that could become tomorrow's
-              products.
-            </p>
-
-            <Link href="/innovation">
-              Explore the Innovation Lab
-              <ArrowRight size={17} />
-            </Link>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="final-home-cta">
-        <div className="new-wrap">
-
-          <small>LET&apos;S BUILD WHAT&apos;S NEXT</small>
-
-          <h2>
-            Have a problem worth
-            <br />
-            <span>solving with technology?</span>
-          </h2>
-
-          <p>
-            Tell us what you are trying to build, improve or automate.
-          </p>
-
-          <Link href="/contact">
-            Start a conversation
-            <ArrowRight size={18} />
-          </Link>
-
-        </div>
-      </section>
+      <CTASection />
 
     </main>
   );
