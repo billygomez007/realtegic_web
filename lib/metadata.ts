@@ -24,7 +24,7 @@ export function createPageMetadata({
       type: "website",
       images: [
         {
-          url: "/logos/Realtegic_Official_Logo.png",
+          url: "/logos/realtegic-logo-2026.png",
           width: 1774,
           height: 887,
           alt: siteConfig.name,
@@ -35,8 +35,7 @@ export function createPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/logos/Realtegic_Official_Logo.png"],
+      images: ["/logos/realtegic-logo-2026.png"],
     },
   };
 }
-

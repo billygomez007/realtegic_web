@@ -56,7 +56,7 @@ export default function Header() {
       <div className="header-container">
         <Link href="/" className="logo-link">
           <Image
-            src="/logos/Realtegic_Official_Logo.png"
+            src="/logos/realtegic-logo-2026.png"
             alt="Realtegic"
             width={160}
             height={48}

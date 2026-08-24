@@ -5801,10 +5801,6 @@ a {
   object-fit: contain;
 }
 
-.footer-logo-image--inverse {
-  filter: brightness(0) invert(1);
-}
-
 .footer-brand p {
   max-width: 390px;
   margin: 0;

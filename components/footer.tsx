@@ -8,12 +8,12 @@ export default function Footer() {
         <div className="footer-brand">
           <Link href="/" className="footer-logo">
             <Image
-              src="/logos/Realtegic_Official_Logo.png"
+              src="/logos/realtegic-logo-2026-white.png"
               alt="Realtegic"
               width={240}
               height={80}
               priority
-              className="footer-logo-image footer-logo-image--inverse"
+              className="footer-logo-image"
             />
           </Link>
 
