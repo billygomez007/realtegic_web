@@ -1,4 +1,13 @@
-import { BrainCircuit, Building2, PanelsTopLeft, type LucideIcon } from "lucide-react";
+import {
+  BrainCircuit,
+  Building2,
+  GraduationCap,
+  Network,
+  PanelsTopLeft,
+  Shield,
+  type LucideIcon,
+} from "lucide-react";
+import type { StatusBadgeType } from "@/components/StatusBadge";
 import type { ProductBrandFields } from "@/lib/product-brand";
 
 export type ProductData = ProductBrandFields & {
@@ -9,6 +18,13 @@ export type ProductData = ProductBrandFields & {
   status: string;
   number: string;
   icon: LucideIcon;
+  availabilityStatus: StatusBadgeType;
+  visual: string;
+  market: string;
+  featured?: boolean;
+  websiteLabel?: string;
+  homepageCtaLabel?: string;
+  homepageStatusLabel?: string;
   features: string[];
   summary: string;
   useCases: string[];
@@ -33,6 +49,13 @@ export const products: ProductData[] = [
     status: "LIVE",
     number: "01",
     icon: BrainCircuit,
+    availabilityStatus: "available",
+    visual: "AI workforce",
+    market: "Business",
+    featured: true,
+    websiteLabel: "SuperKuba.com",
+    homepageCtaLabel: "Visit SuperKuba",
+    homepageStatusLabel: "Live",
     logo: "/logos/superkuba-logo.png",
     logoAlt: "SuperKuba",
     logoWidth: 2172,
@@ -59,16 +82,22 @@ export const products: ProductData[] = [
       "Routine operational assistance across teams",
     ],
     availability: "SuperKuba is live. Individual AI roles, communication channels, integrations and workflows remain subject to account configuration and rollout status.",
+    cardDescription:
+      "Create, deploy and manage intelligent digital employees that work alongside your human team.",
   },
   {
-    slug: "realtegic-property",
-    title: "Realtegic Property",
+    slug: "propertyos",
+    title: "PropertyOS",
     category: "PROPERTY TECHNOLOGY",
     description:
-      "An intelligent property management platform for property owners, managers and developers to manage their entire portfolio from one place.",
+      "AI-powered property management, payments, tenant experiences, maintenance and property marketplace infrastructure.",
     status: "IN DEVELOPMENT",
     number: "02",
     icon: Building2,
+    availabilityStatus: "in-development",
+    visual: "PropertyOS",
+    market: "Property",
+    homepageCtaLabel: "Explore product",
     features: [
       "Property management",
       "Tenant management",
@@ -76,7 +105,7 @@ export const products: ProductData[] = [
       "AI-powered operations",
     ],
     summary:
-      "Realtegic Property is being designed to connect property operations, tenant experiences and portfolio oversight into a single digital operating surface.",
+      "PropertyOS is being designed to connect property operations, tenant experiences and portfolio oversight into a single digital operating surface.",
     useCases: [
       "Portfolio oversight for landlords and developers",
       "Maintenance coordination and tenant communication",
@@ -85,14 +114,49 @@ export const products: ProductData[] = [
     availability: "The product is actively in development and is not presented as a general public launch or fully available platform yet.",
   },
   {
+    slug: "trustpay",
+    title: "TrustPay",
+    category: "DIGITAL TRUST & ESCROW",
+    description:
+      "Digital trust infrastructure designed to make transactions between buyers and sellers safer.",
+    status: "RESEARCH",
+    number: "03",
+    icon: Shield,
+    availabilityStatus: "research",
+    visual: "Trust layer",
+    market: "Finance",
+    homepageCtaLabel: "Explore concept",
+    features: [
+      "Transaction safeguards",
+      "Buyer and seller workflows",
+      "Digital trust controls",
+      "Payment coordination",
+    ],
+    summary:
+      "TrustPay is a research-stage concept exploring how digital trust infrastructure could support safer transactions between buyers and sellers.",
+    useCases: [
+      "Structured transaction flows between buyers and sellers",
+      "Clearer payment and fulfillment coordination",
+      "Trust controls for future marketplace experiences",
+    ],
+    availability:
+      "TrustPay remains a research-stage concept and is not presented as a publicly available financial service.",
+  },
+  {
     slug: "tap-and-order",
     title: "Tap & Order",
     category: "SUPER APP",
     description:
       "A connected super app bringing marketplace, mobility and delivery services into one digital experience.",
     status: "PRODUCT",
-    number: "03",
+    number: "04",
     icon: PanelsTopLeft,
+    availabilityStatus: "available",
+    visual: "Connected super app",
+    market: "Everyday services",
+    websiteLabel: "TapOrderAfrica.com",
+    homepageCtaLabel: "Learn More",
+    homepageStatusLabel: "Product",
     logo: "/logos/tap-and-order-logo.png",
     logoAlt: "Tap & Order",
     logoWidth: 9000,
@@ -119,6 +183,64 @@ export const products: ProductData[] = [
     ],
     availability:
       "Tap & Order connects marketplace, mobility and delivery within one product ecosystem.",
+  },
+  {
+    slug: "institution-platform",
+    title: "Institution Platform",
+    category: "INSTITUTION MANAGEMENT",
+    description:
+      "Intelligent operating infrastructure for schools, universities, churches and other institutions.",
+    status: "PRIVATE PREVIEW",
+    number: "05",
+    icon: GraduationCap,
+    availabilityStatus: "private-preview",
+    visual: "Institution OS",
+    market: "Institutions",
+    homepageCtaLabel: "Request preview",
+    features: [
+      "Institution operations",
+      "Member and stakeholder records",
+      "Administrative workflows",
+      "Communication coordination",
+    ],
+    summary:
+      "Institution Platform brings core administrative workflows into a shared operating environment for education, faith and other membership-based institutions.",
+    useCases: [
+      "Coordinate recurring administrative processes",
+      "Support communication across institutional stakeholders",
+      "Improve visibility across records and operations",
+    ],
+    availability:
+      "Institution Platform is in private preview. Access and capabilities remain limited while the platform is developed.",
+  },
+  {
+    slug: "mobility-platform",
+    title: "Mobility Platform",
+    category: "MOBILITY & TRANSPORTATION",
+    description:
+      "Digital infrastructure for route-based transport, booking, payments, fleet operations and future mobility services.",
+    status: "PUBLIC PREVIEW",
+    number: "06",
+    icon: Network,
+    availabilityStatus: "public-preview",
+    visual: "Mobility stack",
+    market: "Mobility",
+    homepageCtaLabel: "View preview",
+    features: [
+      "Route and service management",
+      "Booking workflows",
+      "Fleet operations",
+      "Mobility payments",
+    ],
+    summary:
+      "Mobility Platform is designed to connect transport services, booking, payments and operational workflows through shared digital infrastructure.",
+    useCases: [
+      "Manage route-based transport services",
+      "Coordinate bookings and mobility payments",
+      "Support fleet and service operations",
+    ],
+    availability:
+      "Mobility Platform is in public preview. Features and availability may change as development continues.",
   },
 ];
 

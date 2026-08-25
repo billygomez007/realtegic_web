@@ -6,7 +6,7 @@ import { products } from "@/lib/products";
 import ProductBrandLogo from "@/components/ProductBrandLogo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Products at Realtegic",
+  title: "Products",
   description:
     "Discover Realtegic products and applications across AI, property technology and connected digital platforms.",
   path: "/products",
@@ -14,7 +14,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function ProductsPage() {
   return (
-    <div className="products-page">
+    <main className="products-page">
 
       <section className="products-hero">
         <div className="products-wrap">
@@ -243,6 +243,6 @@ export default function ProductsPage() {
         </div>
       </section>
 
-    </div>
+    </main>
   );
 }

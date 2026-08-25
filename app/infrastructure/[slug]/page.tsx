@@ -3,7 +3,11 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import SectionEyebrow from "@/components/SectionEyebrow";
-import { createPageMetadata } from "@/lib/metadata";
+import {
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  serializeJsonLd,
+} from "@/lib/metadata";
 import { platformBySlug, platformDetails, platforms } from "@/lib/infrastructure";
 
 export function generateStaticParams() {
@@ -27,7 +31,7 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: `${platform.name} | Realtegic Infrastructure`,
+    title: platform.name,
     description: platform.description,
     path: `/infrastructure/${slug}`,
   });
@@ -46,6 +50,11 @@ export default async function InfrastructureDetailPage({
   }
 
   const Icon = platform.icon;
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Infrastructure", path: "/infrastructure" },
+    { name: platform.name, path: `/infrastructure/${slug}` },
+  ]);
   const details = platformDetails[slug] ?? {
     summary: platform.description,
     capabilities: [],
@@ -54,7 +63,12 @@ export default async function InfrastructureDetailPage({
   };
 
   return (
-    <main className="new-home">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
+      />
+      <main className="new-home">
       <section className="new-hero infrastructure-hero">
         <div className="new-wrap new-hero-grid">
           <div className="hero-copy">
@@ -148,6 +162,7 @@ export default async function InfrastructureDetailPage({
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

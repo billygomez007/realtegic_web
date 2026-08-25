@@ -10,27 +10,27 @@ const navigationItems = [
   { label: "About", href: "/about" },
   {
     label: "Infrastructure",
-    href: "/#platforms",
+    href: "/infrastructure",
     submenu: [
-      { label: "AI Platform", href: "/#ai-platform" },
-      { label: "Communications Cloud", href: "/#communications-cloud" },
-      { label: "Identity Cloud", href: "/#identity-cloud" },
-      { label: "Integration Cloud", href: "/#integration-cloud" },
-      { label: "Automation Cloud", href: "/#automation-cloud" },
-      { label: "Data & Intelligence", href: "/#data-intelligence-platform" },
-      { label: "Developer Cloud", href: "/#developer-cloud" },
+      { label: "AI Platform", href: "/infrastructure/ai-platform" },
+      { label: "Communications Cloud", href: "/infrastructure/communications-cloud" },
+      { label: "Identity Cloud", href: "/infrastructure/identity-cloud" },
+      { label: "Integration Cloud", href: "/infrastructure/integration-cloud" },
+      { label: "Automation Cloud", href: "/infrastructure/automation-cloud" },
+      { label: "Data & Intelligence Platform", href: "/infrastructure/data-intelligence-platform" },
+      { label: "Developer Cloud", href: "/infrastructure/developer-cloud" },
     ],
   },
   {
     label: "Products",
-    href: "/#products",
+    href: "/products",
     submenu: [
-      { label: "SuperKuba", href: "/#superkuba" },
-      { label: "PropertyOS", href: "/#propertyos" },
-      { label: "TrustPay", href: "/#trustpay" },
+      { label: "SuperKuba", href: "/products/kuba-ai" },
+      { label: "PropertyOS", href: "/products/propertyos" },
+      { label: "TrustPay", href: "/products/trustpay" },
       { label: "Tap & Order", href: "/products/tap-and-order" },
-      { label: "Institution Platform", href: "/#institution-platform" },
-      { label: "Mobility Platform", href: "/#mobility-platform" },
+      { label: "Institution Platform", href: "/products/institution-platform" },
+      { label: "Mobility Platform", href: "/products/mobility-platform" },
     ],
   },
   { label: "Developers", href: "/developers" },
@@ -66,7 +66,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="nav-desktop">
+        <nav className="nav-desktop" aria-label="Primary navigation">
           {navigationItems.map((item) => (
             <div key={item.label} className="nav-item-wrapper">
               {item.submenu ? (
@@ -94,6 +94,7 @@ export default function Header() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {mobileMenuOpen ? (
             <X size={24} />
@@ -105,7 +106,11 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <nav className="nav-mobile">
+        <nav
+          className="nav-mobile"
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+        >
           <div className="mobile-nav-content">
             {navigationItems.map((item) => (
               <div key={item.label} className="mobile-nav-item">
@@ -115,6 +120,7 @@ export default function Header() {
                       className="mobile-nav-link"
                       onClick={() => toggleSubmenu(item.label)}
                       aria-expanded={openSubmenu === item.label}
+                      aria-controls={`${item.label.toLowerCase()}-mobile-submenu`}
                     >
                       {item.label}
                       <ChevronDown
@@ -122,10 +128,14 @@ export default function Header() {
                         className={`submenu-icon ${
                           openSubmenu === item.label ? "open" : ""
                         }`}
+                        aria-hidden="true"
                       />
                     </button>
                     {openSubmenu === item.label && (
-                      <div className="mobile-submenu">
+                      <div
+                        className="mobile-submenu"
+                        id={`${item.label.toLowerCase()}-mobile-submenu`}
+                      >
                         {item.submenu.map((subitem) => (
                           <Link
                             key={subitem.label}

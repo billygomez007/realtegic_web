@@ -11,9 +11,10 @@ import {
 } from "lucide-react";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact Realtegic",
+  title: "Contact",
   description:
     "Contact Realtegic to discuss products, partnerships or custom technology solutions.",
   path: "/contact",
@@ -49,23 +50,23 @@ export default function ContactPage() {
               <div className="contact-orbit orbit-b" />
 
               <div className="contact-core">
-                <Sparkles size={38} />
+                <Sparkles size={38} aria-hidden="true" />
                 <strong>REALTEGIC</strong>
                 <small>LET&apos;S BUILD</small>
               </div>
 
               <div className="contact-node contact-node-a">
-                <BrainCircuit size={16} />
+                <BrainCircuit size={16} aria-hidden="true" />
                 AI
               </div>
 
               <div className="contact-node contact-node-b">
-                <Building2 size={16} />
+                <Building2 size={16} aria-hidden="true" />
                 Platforms
               </div>
 
               <div className="contact-node contact-node-c">
-                <Globe2 size={16} />
+                <Globe2 size={16} aria-hidden="true" />
                 Digital
               </div>
             </div>
@@ -101,7 +102,7 @@ export default function ContactPage() {
 
                 <div>
                   <div className="contact-option-icon">
-                    <MessageSquare size={20} />
+                    <MessageSquare size={20} aria-hidden="true" />
                   </div>
                   <div>
                     <strong>Product & Solutions</strong>
@@ -111,7 +112,7 @@ export default function ContactPage() {
 
                 <div>
                   <div className="contact-option-icon">
-                    <BrainCircuit size={20} />
+                    <BrainCircuit size={20} aria-hidden="true" />
                   </div>
                   <div>
                     <strong>Technology & Partnerships</strong>
@@ -123,7 +124,7 @@ export default function ContactPage() {
 
                 <div>
                   <div className="contact-option-icon">
-                    <Sparkles size={20} />
+                    <Sparkles size={20} aria-hidden="true" />
                   </div>
                   <div>
                     <strong>Build Something New</strong>
@@ -137,71 +138,7 @@ export default function ContactPage() {
 
             </div>
 
-            <form className="contact-form-new">
-
-              <div className="contact-form-title">
-                <span>01</span>
-                <strong>Tell us about your project</strong>
-              </div>
-
-              <div className="contact-form-row">
-                <label>
-                  <span>Name</span>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your name"
-                  />
-                </label>
-
-                <label>
-                  <span>Email</span>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="you@company.com"
-                  />
-                </label>
-              </div>
-
-              <label>
-                <span>Company</span>
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Company name"
-                />
-              </label>
-
-              <label>
-                <span>What can we help you with?</span>
-                <select name="interest" defaultValue="">
-                  <option value="" disabled>
-                    Select an option
-                  </option>
-                  <option value="products">Realtegic Products</option>
-                  <option value="ai">AI & Automation</option>
-                  <option value="platform">Digital Platform</option>
-                  <option value="partnership">Partnership</option>
-                  <option value="custom">Custom Technology</option>
-                </select>
-              </label>
-
-              <label>
-                <span>Message</span>
-                <textarea
-                  name="message"
-                  rows={6}
-                  placeholder="Tell us what you are building..."
-                />
-              </label>
-
-              <button type="submit">
-                Send message
-                <ArrowRight size={17} />
-              </button>
-
-            </form>
+            <ContactForm />
 
           </div>
 
@@ -222,7 +159,7 @@ export default function ContactPage() {
             </div>
 
             <div className="contact-direct-card">
-              <Mail size={22} />
+              <Mail size={22} aria-hidden="true" />
               <small>EMAIL</small>
               <a href={`mailto:${siteConfig.email}`} className="contact-direct-link">
                 {siteConfig.email}
@@ -259,7 +196,7 @@ export default function ContactPage() {
 
           <Link href="/products">
             Explore our products
-            <ArrowRight size={17} />
+            <ArrowRight size={17} aria-hidden="true" />
           </Link>
 
         </div>

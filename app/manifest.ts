@@ -8,7 +8,10 @@ export default function manifest(): MetadataRoute.Manifest {
     description:
       "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
     start_url: "/",
+    scope: "/",
     display: "standalone",
+    theme_color: "#07152f",
+    background_color: "#07152f",
     icons: [
       {
         src: "/icons/realtegic-icon-192x192.png",

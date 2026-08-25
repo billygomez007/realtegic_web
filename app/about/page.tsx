@@ -11,7 +11,7 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Realtegic",
+  title: "About",
   description:
     "Learn about Realtegic, the technology company building digital infrastructure and intelligent applications for businesses, developers, institutions and enterprises.",
   path: "/about",
@@ -118,7 +118,7 @@ export default function AboutPage() {
 
             <div>
               <div className="mission-icon">
-                <BrainCircuit size={32} />
+                <BrainCircuit size={32} aria-hidden="true" />
               </div>
 
               <p>
@@ -130,6 +130,31 @@ export default function AboutPage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <section className="about-vision">
+        <div className="about-wrap about-vision-grid">
+          <div>
+            <div className="about-label">OUR VISION</div>
+            <h2>
+              Build technology that becomes
+              <span> infrastructure for what comes next.</span>
+            </h2>
+          </div>
+
+          <div className="about-vision-copy">
+            <p>
+              We envision Realtegic as a technology company whose infrastructure and
+              products power increasingly important parts of how businesses,
+              applications and institutions operate.
+            </p>
+            <p>
+              Our ambition is to build technology that can scale across industries
+              and markets while remaining practical, interoperable and useful in the
+              real world.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -153,7 +178,7 @@ export default function AboutPage() {
                 <div className="value-card" key={value.number}>
                   <div className="value-top">
                     <span>{value.number}</span>
-                    <Icon size={25} />
+                    <Icon size={25} aria-hidden="true" />
                   </div>
 
                   <h3>{value.title}</h3>
@@ -178,7 +203,7 @@ export default function AboutPage() {
               <div className="global-circle circle-three" />
 
               <div className="global-center">
-                <Globe2 size={44} />
+                <Globe2 size={44} aria-hidden="true" />
                 <strong>GLOBAL</strong>
                 <small>BY DESIGN</small>
               </div>
@@ -206,7 +231,7 @@ export default function AboutPage() {
 
               <Link href="/products" className="about-link">
                 Explore our products
-                <ArrowRight size={17} />
+                <ArrowRight size={17} aria-hidden="true" />
               </Link>
             </div>
 
@@ -232,7 +257,7 @@ export default function AboutPage() {
 
           <Link href="/contact" className="about-cta-button">
             Start a conversation
-            <ArrowRight size={18} />
+            <ArrowRight size={18} aria-hidden="true" />
           </Link>
 
         </div>

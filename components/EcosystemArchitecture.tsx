@@ -8,6 +8,7 @@ const infrastructureLayers = [
   "Integration",
   "Automation",
   "Data",
+  "Developer",
 ];
 
 type EcosystemProductLayer = ProductBrandFields & {
@@ -31,9 +32,8 @@ const productLayers: EcosystemProductLayer[] = [
     logoWidth: 9000,
     logoHeight: 3000,
   },
-  { name: "Institutions" },
-  { name: "Mobility" },
-  { name: "Future Products" },
+  { name: "Institution Platform" },
+  { name: "Mobility Platform" },
 ];
 
 const outcomes = ["Businesses", "Developers", "Institutions", "Governments"];
@@ -96,7 +96,7 @@ export default function EcosystemArchitecture() {
 
         <div className="ecosystem-architecture__outcomes">
           <span className="ecosystem-architecture__eyebrow">POWERING</span>
-          <strong>Businesses</strong>
+          <strong>Connected Audiences</strong>
           <div className="ecosystem-architecture__outcome-grid">
             {outcomes.map((outcome) => (
               <span key={outcome}>{outcome}</span>

@@ -23,37 +23,36 @@ export default function Footer() {
 
         <div className="footer-column">
           <h4>Infrastructure</h4>
-          <Link href="/#ai-platform">AI Platform</Link>
-          <Link href="/#communications-cloud">Communications</Link>
-          <Link href="/#identity-cloud">Identity</Link>
-          <Link href="/#integration-cloud">Integrations</Link>
-          <Link href="/#automation-cloud">Automation</Link>
-          <Link href="/#data-intelligence-platform">Data &amp; Intelligence</Link>
-          <Link href="/#developer-cloud">Developer Cloud</Link>
+          <Link href="/infrastructure/ai-platform">AI Platform</Link>
+          <Link href="/infrastructure/communications-cloud">Communications Cloud</Link>
+          <Link href="/infrastructure/identity-cloud">Identity Cloud</Link>
+          <Link href="/infrastructure/integration-cloud">Integration Cloud</Link>
+          <Link href="/infrastructure/automation-cloud">Automation Cloud</Link>
+          <Link href="/infrastructure/data-intelligence-platform">Data &amp; Intelligence Platform</Link>
+          <Link href="/infrastructure/developer-cloud">Developer Cloud</Link>
         </div>
 
         <div className="footer-column">
           <h4>Products</h4>
-          <Link href="/products">SuperKuba</Link>
-          <Link href="/products">PropertyOS</Link>
-          <Link href="/products">TrustPay</Link>
+          <Link href="/products/kuba-ai">SuperKuba</Link>
+          <Link href="/products/propertyos">PropertyOS</Link>
+          <Link href="/products/trustpay">TrustPay</Link>
           <Link href="/products/tap-and-order">Tap &amp; Order</Link>
-          <Link href="/products">Institution Platform</Link>
-          <Link href="/products">Mobility</Link>
+          <Link href="/products/institution-platform">Institution Platform</Link>
+          <Link href="/products/mobility-platform">Mobility Platform</Link>
         </div>
 
         <div className="footer-column">
           <h4>Developers</h4>
           <Link href="/developers">Developer Platform</Link>
-          <Link href="/developers">Documentation</Link>
-          <Link href="/developers">APIs</Link>
-          <Link href="/developers">SDKs</Link>
-          <Link href="/developers">Developer Community</Link>
+          <Link href="/infrastructure">Infrastructure</Link>
+          <Link href="/developers">Developer Access</Link>
         </div>
 
         <div className="footer-column">
           <h4>Company</h4>
           <Link href="/about">About</Link>
+          <Link href="/company">Company</Link>
           <Link href="/innovation">Innovation</Link>
           <Link href="/careers">Careers</Link>
           <Link href="/insights">Insights</Link>
@@ -61,10 +60,11 @@ export default function Footer() {
         </div>
 
         <div className="footer-column">
-          <h4>Legal</h4>
+          <h4>Trust &amp; Legal</h4>
+          <Link href="/trust">Trust Center</Link>
+          <Link href="/security">Security</Link>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
-          <Link href="/security">Security</Link>
           <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           <span>{siteConfig.officeAddress[0]}</span>
           <span>{siteConfig.officeAddress[1]}</span>

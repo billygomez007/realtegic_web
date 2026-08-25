@@ -13,7 +13,7 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Innovation at Realtegic",
+  title: "Innovation",
   description:
     "Explore Realtegic Labs and the ideas, research and emerging technologies shaping future products.",
   path: "/innovation",

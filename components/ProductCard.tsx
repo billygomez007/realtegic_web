@@ -12,7 +12,7 @@ export interface ProductCardData extends ProductBrandFields {
   category: string;
   description: string;
   availabilityStatus: StatusBadgeType;
-  website: string;
+  website?: string;
   route: string;
   externalRoute?: string;
   visual: string;
@@ -75,7 +75,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="product-card__details">
           <span className="product-card__visual">{product.visual}</span>
           <span className="product-card__market">{product.market}</span>
-          <span className="product-card__website">{product.website}</span>
+          {product.website ? (
+            <span className="product-card__website">{product.website}</span>
+          ) : null}
         </div>
       </div>
 

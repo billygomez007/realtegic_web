@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
+import { platforms } from "@/lib/infrastructure";
 import { products } from "@/lib/products";
 
 const routes = [
   "/",
   "/about",
   "/infrastructure",
+  ...platforms.map((platform) => `/infrastructure/${platform.slug}`),
   "/products",
   "/developers",
   "/innovation",
@@ -13,6 +15,7 @@ const routes = [
   "/careers",
   "/insights",
   "/contact",
+  "/trust",
   "/security",
   "/privacy",
   "/terms",

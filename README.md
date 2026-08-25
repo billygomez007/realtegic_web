@@ -34,3 +34,34 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Contact form delivery
+
+The `/api/contact` Route Handler sends website enquiries through Resend to
+`info@realtegicworks.com`, then sends a transactional acknowledgement to the
+visitor. Both emails use the verified sender
+`Realtegic <notifications@realtegicworks.com>`.
+
+Configure this server-only environment variable locally and in Vercel:
+
+```bash
+RESEND_API_KEY=re_...
+```
+
+Never prefix this variable with `NEXT_PUBLIC_` or commit its value.
+
+Before production deployment:
+
+- verify `realtegicworks.com` and `notifications@realtegicworks.com` for sending in Resend
+- configure `RESEND_API_KEY` in the Vercel Production environment
+- add a Vercel Firewall rate-limit rule for `POST /api/contact`; the application
+  also includes honeypot, timing, same-origin, idempotency, and per-instance
+  rate-limit safeguards
+
+In development, preview the email-safe HTML templates at:
+
+- `/api/contact/preview`
+- `/api/contact/preview?template=notification`
+- `/api/contact/preview?company=none`
+
+The preview route returns `404` in production.

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -11,6 +13,14 @@ import {
   HeartPulse,
   Sparkles,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Industries",
+  description:
+    "Explore how Realtegic technology infrastructure and products can support organizations across property, commerce, mobility, education and other sectors.",
+  path: "/industries",
+});
 
 const industries = [
   {
@@ -145,8 +155,14 @@ export default function IndustriesPage() {
                 <article
                   className="industry-card"
                   key={industry.number}
-                  style={{ backgroundImage: `url(${industry.image})` }}
                 >
+                  <Image
+                    src={industry.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    style={{ objectFit: "cover" }}
+                  />
                   <div className="industry-card-overlay" />
 
                   <div className="industry-card-top">

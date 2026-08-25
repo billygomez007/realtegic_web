@@ -6,7 +6,11 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import ProductBrandLogo from "@/components/ProductBrandLogo";
 import SuperKubaShowcase from "@/components/SuperKubaShowcase";
 import TapOrderShowcase from "@/components/TapOrderShowcase";
-import { createPageMetadata } from "@/lib/metadata";
+import {
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  serializeJsonLd,
+} from "@/lib/metadata";
 import { productBySlug, products } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -30,7 +34,7 @@ export async function generateMetadata({
   }
 
   const metadata = createPageMetadata({
-    title: product.seoTitle ?? `${product.title} | Realtegic Products`,
+    title: product.seoTitle ?? product.title,
     description: product.seoDescription ?? product.description,
     path: `/products/${slug}`,
   });
@@ -54,18 +58,42 @@ export default async function ProductDetailPage({
     notFound();
   }
 
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+    { name: product.title, path: `/products/${slug}` },
+  ]);
+  const breadcrumbs = (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
+    />
+  );
+
   if (product.slug === "kuba-ai") {
-    return <SuperKubaShowcase product={product} />;
+    return (
+      <>
+        {breadcrumbs}
+        <SuperKubaShowcase product={product} />
+      </>
+    );
   }
 
   if (product.slug === "tap-and-order") {
-    return <TapOrderShowcase product={product} />;
+    return (
+      <>
+        {breadcrumbs}
+        <TapOrderShowcase product={product} />
+      </>
+    );
   }
 
   const Icon = product.icon;
 
   return (
-    <main className="new-home">
+    <>
+      {breadcrumbs}
+      <main className="new-home">
       <section className="new-hero infrastructure-hero product-detail-hero">
         <div className="new-wrap new-hero-grid">
           <div className="hero-copy">
@@ -175,6 +203,7 @@ export default async function ProductDetailPage({
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

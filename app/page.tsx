@@ -1,11 +1,8 @@
 import {
   ArrowRight,
   BrainCircuit,
-  Building2,
   Layers3,
   Network,
-  PanelsTopLeft,
-  Shield,
   Workflow,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -22,122 +19,35 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import AfricaNetworkVisual from "@/components/AfricaNetworkVisual";
 import { createPageMetadata } from "@/lib/metadata";
 import { platforms } from "@/lib/infrastructure";
+import { products } from "@/lib/products";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Realtegic",
+  title: "Technology Infrastructure and Products",
   description:
     "Realtegic builds digital infrastructure, intelligent platforms and technology products for businesses, developers and institutions.",
   path: "/",
 });
 
-const productPortfolio: ProductCardData[] = [
-  {
-    productName: "SuperKuba",
-    displayName: "SuperKuba",
-    slug: "superkuba",
-    category: "AI WORKFORCE PLATFORM",
-    description:
-      "Create, deploy and manage intelligent digital employees that work alongside your human team.",
-    availabilityStatus: "available",
-    website: "SuperKuba.com",
-    route: "/products/kuba-ai",
-    visual: "AI workforce",
-    icon: BrainCircuit,
-    logo: "/logos/superkuba-logo.png",
-    logoAlt: "SuperKuba",
-    logoWidth: 2172,
-    logoHeight: 724,
-    featured: true,
-    ctaLabel: "Visit SuperKuba",
-    market: "Business",
-    statusLabel: "Live",
-  },
-  {
-    productName: "PropertyOS",
-    displayName: "PropertyOS",
-    slug: "propertyos",
-    category: "PROPERTY TECHNOLOGY",
-    description:
-      "AI-powered property management, payments, tenant experiences, maintenance and property marketplace infrastructure.",
-    availabilityStatus: "in-development",
-    website: "Realtegic.com",
-    route: "/products",
-    visual: "Property OS",
-    icon: Building2,
-    featured: false,
-    ctaLabel: "Explore product",
-    market: "Property",
-  },
-  {
-    productName: "TrustPay",
-    displayName: "TrustPay",
-    slug: "trustpay",
-    category: "DIGITAL TRUST & ESCROW",
-    description:
-      "Digital trust infrastructure designed to make transactions between buyers and sellers safer.",
-    availabilityStatus: "research",
-    website: "Realtegic.com",
-    route: "/products",
-    visual: "Trust layer",
-    icon: Shield,
-    featured: false,
-    ctaLabel: "Explore concept",
-    market: "Finance",
-  },
-  {
-    productName: "Tap & Order",
-    displayName: "Tap & Order",
-    slug: "tap-and-order",
-    category: "SUPER APP",
-    description:
-      "A connected super app bringing marketplace, mobility and delivery services into one digital experience.",
-    availabilityStatus: "available",
-    website: "TapOrderAfrica.com",
-    route: "/products/tap-and-order",
-    visual: "Connected super app",
-    icon: PanelsTopLeft,
-    logo: "/logos/tap-and-order-logo.png",
-    logoAlt: "Tap & Order",
-    logoWidth: 9000,
-    logoHeight: 3000,
-    featured: false,
-    ctaLabel: "Learn More",
-    market: "Everyday services",
-    statusLabel: "Product",
-  },
-  {
-    productName: "Institution Platform",
-    displayName: "Institution Platform",
-    slug: "institution-platform",
-    category: "INSTITUTION MANAGEMENT",
-    description:
-      "Intelligent operating infrastructure for schools, universities, churches and other institutions.",
-    availabilityStatus: "private-preview",
-    website: "Realtegic.com",
-    route: "/products",
-    visual: "Institution OS",
-    icon: Layers3,
-    featured: false,
-    ctaLabel: "Request preview",
-    market: "Institutions",
-  },
-  {
-    productName: "Mobility Platform",
-    displayName: "Mobility Platform",
-    slug: "mobility-platform",
-    category: "MOBILITY & TRANSPORTATION",
-    description:
-      "Digital infrastructure for route-based transport, booking, payments, fleet operations and future mobility services.",
-    availabilityStatus: "public-preview",
-    website: "Realtegic.com",
-    route: "/innovation",
-    visual: "Mobility stack",
-    icon: Network,
-    featured: false,
-    ctaLabel: "View preview",
-    market: "Mobility",
-  },
-];
+const productPortfolio: ProductCardData[] = products.map((product) => ({
+  productName: product.title,
+  displayName: product.title,
+  slug: product.slug,
+  category: product.category,
+  description: product.cardDescription ?? product.description,
+  availabilityStatus: product.availabilityStatus,
+  website: product.websiteLabel,
+  route: `/products/${product.slug}`,
+  visual: product.visual,
+  icon: product.icon,
+  logo: product.logo,
+  logoAlt: product.logoAlt,
+  logoWidth: product.logoWidth,
+  logoHeight: product.logoHeight,
+  featured: product.featured ?? false,
+  ctaLabel: product.homepageCtaLabel ?? product.ctaLabel ?? "Learn more",
+  market: product.market,
+  statusLabel: product.homepageStatusLabel,
+}));
 
 export default function Home() {
   return (
@@ -227,34 +137,34 @@ export default function Home() {
             <div>
               <small>THE REALTEGIC ECOSYSTEM</small>
               <h2>
-                One intelligence layer.
-                <span> Multiple products.</span>
+                One Technology Foundation.
+                <span> Multiple Products.</span>
               </h2>
             </div>
 
             <p>
-              We are building a growing ecosystem of technology products that
-              share a common foundation of intelligence, automation and
-              connectivity.
+              Our products share a common foundation across AI, communications,
+              identity, integrations, automation, data and developer
+              infrastructure.
             </p>
           </div>
 
           <div className="suite-strip">
             <div>
               <BrainCircuit size={23} />
-              <strong>AI</strong>
+              <strong>Infrastructure</strong>
             </div>
             <div>
               <Workflow size={23} />
-              <strong>Automation</strong>
-            </div>
-            <div>
-              <Network size={23} />
               <strong>Platforms</strong>
             </div>
             <div>
+              <Network size={23} />
+              <strong>Products</strong>
+            </div>
+            <div>
               <Layers3 size={23} />
-              <strong>Data</strong>
+              <strong>Connectivity</strong>
             </div>
           </div>
 

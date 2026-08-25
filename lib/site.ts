@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Realtegic",
-  url: "https://realtegicworks.com",
+  url: "https://www.realtegicworks.com",
   domain: "realtegicworks.com",
   email: "info@realtegicworks.com",
   officeAddress: [
@@ -18,4 +18,3 @@ export const siteConfig = {
     },
   ],
 };
-

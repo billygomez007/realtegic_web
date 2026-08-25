@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/metadata";
 import { platforms } from "@/lib/infrastructure";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Infrastructure at Realtegic",
+  title: "Infrastructure",
   description:
     "Realtegic builds reusable technology infrastructure across AI, communications, identity, integrations, automation, data and developer platforms.",
   path: "/infrastructure",

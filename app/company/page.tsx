@@ -1,45 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BrainCircuit,
-  Globe2,
-  Lightbulb,
-  Rocket,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Company at Realtegic",
+  title: "Company",
   description:
     "Realtegic builds foundational digital infrastructure, intelligent platforms and applications for businesses, developers and institutions.",
   path: "/company",
 });
-
-const values = [
-  {
-    title: "Innovation",
-    text: "We challenge conventional ways of working and look for better possibilities through technology.",
-    icon: Lightbulb,
-  },
-  {
-    title: "Purpose",
-    text: "We build around real problems, measurable outcomes and technology that creates meaningful value.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Intelligence",
-    text: "We use AI and automation to make products smarter, faster and more capable.",
-    icon: BrainCircuit,
-  },
-  {
-    title: "Impact",
-    text: "We measure success by what our technology enables people and organizations to achieve.",
-    icon: Rocket,
-  },
-];
 
 const foundationAreas = [
   "AI Platform",
@@ -58,7 +28,6 @@ const productLayers = [
   "Tap & Order",
   "Institution Platform",
   "Mobility Platform",
-  "Future products",
 ];
 
 const approachSteps = [
@@ -106,7 +75,7 @@ export default function CompanyPage() {
           <div className="company-actions">
             <Link href="/about" className="company-primary-action">
               About Realtegic
-              <ArrowRight size={17} />
+              <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <Link href="/contact" className="company-secondary-action">
               Talk to Us
@@ -118,7 +87,7 @@ export default function CompanyPage() {
       <section className="company-section">
         <div className="company-wrap company-story-grid">
           <div>
-            <span className="company-eyebrow company-eyebrow-muted">WHO WE ARE</span>
+            <span className="company-eyebrow company-eyebrow-muted">HOW WE OPERATE</span>
             <h2>
               Technology built with
               <span> purpose.</span>
@@ -211,14 +180,14 @@ export default function CompanyPage() {
               foundations repeatedly.
             </p>
             <p>
-              Over time, parts of this infrastructure can also become available to
+              Over time, parts of this infrastructure may also become available to
               developers, businesses and institutions through APIs, SDKs and
               developer tools.
             </p>
             <div className="company-status-row">
-              <span className="company-status">Coming Soon</span>
+              <span className="company-status">Developer Access — Coming Soon</span>
               <span className="company-status-copy">
-                for genuinely unavailable developer access.
+                Public APIs, SDKs and developer tools are not available yet.
               </span>
             </div>
           </div>
@@ -243,74 +212,6 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <section className="company-section company-mission-section">
-        <div className="company-wrap company-mission-grid">
-          <div>
-            <span className="company-eyebrow">OUR MISSION</span>
-            <h2>
-              Make powerful technology
-              <span> practical.</span>
-            </h2>
-          </div>
-          <div className="company-mission-copy">
-            <p>
-              Our mission is to create technology that removes infrastructure barriers
-              and enables businesses, developers and institutions to build and
-              operate more effectively.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="company-section company-vision-section">
-        <div className="company-wrap company-vision-grid">
-          <div>
-            <span className="company-eyebrow">OUR VISION</span>
-            <h2>
-              Build technology that becomes
-              <span> infrastructure for what comes next.</span>
-            </h2>
-          </div>
-          <div className="company-vision-copy">
-            <p>
-              We envision Realtegic as a technology company whose infrastructure and
-              products power increasingly important parts of how businesses,
-              applications and institutions operate.
-            </p>
-            <p>
-              Our ambition is to build technology that can scale across industries
-              and markets while remaining practical, interoperable and useful in the
-              real world.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="company-section company-values-section">
-        <div className="company-wrap">
-          <span className="company-eyebrow">WHAT DRIVES US</span>
-          <h2>
-            Four principles behind
-            <span> everything we build.</span>
-          </h2>
-          <div className="company-values-grid">
-            {values.map((value) => {
-              const Icon = value.icon;
-
-              return (
-                <div key={value.title} className="company-value-card">
-                  <div className="company-value-header">
-                    <span>{value.title}</span>
-                    <Icon size={20} />
-                  </div>
-                  <p>{value.text}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       <section className="company-section company-approach-section">
         <div className="company-wrap">
           <span className="company-eyebrow">OUR APPROACH</span>
@@ -331,38 +232,6 @@ export default function CompanyPage() {
             products faster, connect capabilities across the portfolio and build a
             technology ecosystem that becomes more useful as it grows.
           </p>
-        </div>
-      </section>
-
-      <section className="company-section company-global-section">
-        <div className="company-wrap company-global-grid">
-          <div className="company-global-visual">
-            <div className="company-global-orbit orbit-one" />
-            <div className="company-global-orbit orbit-two" />
-            <div className="company-global-orbit orbit-three" />
-            <div className="company-global-core">
-              <Globe2 size={34} />
-              <strong>GLOBAL</strong>
-              <small>BY DESIGN</small>
-            </div>
-          </div>
-          <div>
-            <h2>
-              Built for a
-              <span> connected world.</span>
-            </h2>
-            <p>
-              Realtegic designs technology with interoperability, adaptability and
-              scalability in mind. Our systems are intended to work across different
-              industries, organizations, communication channels and technology
-              environments.
-            </p>
-            <p>
-              We believe the next generation of technology companies will not simply
-              build isolated applications. They will build connected foundations that
-              allow many applications, businesses and people to work together.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -392,7 +261,7 @@ export default function CompanyPage() {
             </ul>
             <Link href="/innovation" className="company-secondary-link">
               Explore Innovation
-              <ArrowRight size={16} />
+              <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -411,7 +280,7 @@ export default function CompanyPage() {
               <strong>Technology</strong>
             </div>
             <div className="company-info-card company-info-card--wide">
-              <small>Head Office</small>
+              <small>Office</small>
               <strong>{siteConfig.officeAddress[0]}</strong>
               <span>{siteConfig.officeAddress[1]}</span>
             </div>
@@ -449,7 +318,7 @@ export default function CompanyPage() {
           <div className="company-actions">
             <Link href="/products" className="company-primary-action company-primary-action--light">
               Explore Our Technology
-              <ArrowRight size={17} />
+              <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <Link href="/contact" className="company-secondary-action company-secondary-action--light">
               Talk to Realtegic

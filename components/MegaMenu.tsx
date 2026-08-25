@@ -14,28 +14,38 @@ export interface MegaMenuProps {
 
 export default function MegaMenu({ label, items }: MegaMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const menuId = `${label.toLowerCase().replace(/\s+/g, "-")}-menu`;
 
   return (
-    <div className="mega-menu-wrapper">
+    <div
+      className="mega-menu-wrapper"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          setIsOpen(false);
+        }
+      }}
+    >
       <button
         className="nav-link mega-menu-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
+        aria-haspopup="true"
         aria-expanded={isOpen}
+        aria-controls={menuId}
       >
         {label}
         <ChevronDown
           size={16}
           className={`chevron-icon ${isOpen ? "open" : ""}`}
+          aria-hidden="true"
         />
       </button>
 
       {isOpen && (
         <div
           className="mega-menu-panel"
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
+          id={menuId}
         >
           <div className="mega-menu-grid">
             {items.map((item) => (

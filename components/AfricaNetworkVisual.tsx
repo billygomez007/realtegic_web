@@ -5,6 +5,10 @@ export interface AfricaNetworkVisualProps {
 export default function AfricaNetworkVisual({
   className = "",
 }: AfricaNetworkVisualProps) {
+  const id = useId().replace(/:/g, "");
+  const glowId = `africaGlow-${id}`;
+  const gridId = `africaGrid-${id}`;
+
   return (
     <div
       className={`africa-network-visual ${className}`.trim()}
@@ -35,13 +39,13 @@ export default function AfricaNetworkVisual({
           aria-hidden="true"
         >
           <defs>
-            <radialGradient id="africaGlow" cx="0" cy="0" r="1">
+            <radialGradient id={glowId} cx="0" cy="0" r="1">
               <stop offset="0%" stopColor="#1683ff" stopOpacity="0.8" />
               <stop offset="70%" stopColor="#0dd9ff" stopOpacity="0.12" />
               <stop offset="100%" stopColor="#0dd9ff" stopOpacity="0" />
             </radialGradient>
             <pattern
-              id="africaGrid"
+              id={gridId}
               width="48"
               height="48"
               patternUnits="userSpaceOnUse"
@@ -55,9 +59,9 @@ export default function AfricaNetworkVisual({
             </pattern>
           </defs>
 
-          <rect width="720" height="720" fill="url(#africaGrid)" opacity="0.95" />
+          <rect width="720" height="720" fill={`url(#${gridId})`} opacity="0.95" />
 
-          <circle cx="360" cy="360" r="250" fill="url(#africaGlow)" opacity="0.45" />
+          <circle cx="360" cy="360" r="250" fill={`url(#${glowId})`} opacity="0.45" />
 
           <path
             className="africa-network-visual__route africa-network-visual__route--one"
@@ -139,3 +143,4 @@ export default function AfricaNetworkVisual({
     </div>
   );
 }
+import { useId } from "react";
