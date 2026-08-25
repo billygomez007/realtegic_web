@@ -24,8 +24,14 @@ const productLayers: EcosystemProductLayer[] = [
   },
   { name: "PropertyOS" },
   { name: "TrustPay" },
+  {
+    name: "Tap & Order",
+    logo: "/logos/tap-and-order-logo.png",
+    logoAlt: "Tap & Order",
+    logoWidth: 9000,
+    logoHeight: 3000,
+  },
   { name: "Institutions" },
-  { name: "GovTech" },
   { name: "Mobility" },
   { name: "Future Products" },
 ];

@@ -37,8 +37,8 @@ export default function Footer() {
           <Link href="/products">SuperKuba</Link>
           <Link href="/products">PropertyOS</Link>
           <Link href="/products">TrustPay</Link>
+          <Link href="/products/tap-and-order">Tap &amp; Order</Link>
           <Link href="/products">Institution Platform</Link>
-          <Link href="/products">GovTech</Link>
           <Link href="/products">Mobility</Link>
         </div>
 

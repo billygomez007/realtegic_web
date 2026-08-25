@@ -55,8 +55,8 @@ const productLayers = [
   "SuperKuba",
   "PropertyOS",
   "TrustPay",
+  "Tap & Order",
   "Institution Platform",
-  "Government Technology",
   "Mobility Platform",
   "Future products",
 ];
