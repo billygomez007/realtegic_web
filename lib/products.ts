@@ -1,6 +1,7 @@
 import { BrainCircuit, Building2, type LucideIcon } from "lucide-react";
+import type { ProductBrandFields } from "@/lib/product-brand";
 
-export type ProductData = {
+export type ProductData = ProductBrandFields & {
   slug: string;
   title: string;
   category: string;
@@ -17,13 +18,18 @@ export type ProductData = {
 export const products: ProductData[] = [
   {
     slug: "kuba-ai",
-    title: "Kuba AI",
+    title: "SuperKuba",
     category: "AI WORKFORCE PLATFORM",
     description:
       "An intelligent AI workforce that helps businesses automate customer communication, engagement and everyday operations.",
     status: "AVAILABLE",
     number: "01",
     icon: BrainCircuit,
+    logo: "/logos/superkuba-logo.png",
+    logoAlt: "SuperKuba",
+    logoWidth: 2172,
+    logoHeight: 724,
+    externalUrl: "https://superkuba.ai",
     features: [
       "AI customer engagement",
       "Multi-channel communication",
@@ -31,7 +37,7 @@ export const products: ProductData[] = [
       "AI agents and workflows",
     ],
     summary:
-      "Kuba AI is designed to let organizations deploy digital workforces that support conversations, service tasks and internal operations with a consistent AI layer.",
+      "SuperKuba is designed to let organizations deploy digital workforces that support conversations, service tasks and internal operations with a consistent AI layer.",
     useCases: [
       "Customer support and lead handling",
       "Sales follow-up and business communications",

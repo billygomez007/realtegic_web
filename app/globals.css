@@ -1990,6 +1990,37 @@ a {
   color: #1683ff;
 }
 
+.product-brand-logo {
+  display: inline-flex;
+  max-width: 100%;
+  line-height: 0;
+}
+
+.product-brand-logo__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.products-page__brand-logo {
+  width: min(260px, 100%);
+  margin-bottom: 22px;
+  padding: 5px 14px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 15px;
+  background: #07152f;
+}
+
+.products-page .product-card h3 {
+  color: #fff;
+}
+
+.products-page .product-card-info > p,
+.products-page .product-features div {
+  color: #a9b7ca;
+}
+
 .product-category {
   color: #1683ff;
   font-size: 9px;
@@ -3424,6 +3455,10 @@ a {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
 
+.product-card__brand-logo {
+  width: min(260px, 70%);
+}
+
 .product-card__body {
   display: grid;
   gap: 18px;
@@ -3656,6 +3691,17 @@ a {
   letter-spacing: .12em;
   text-transform: uppercase;
   box-shadow: 0 10px 24px rgba(7,21,47,.04);
+}
+
+.ecosystem-architecture__chip.ecosystem-architecture__chip--branded {
+  min-height: 38px;
+  padding: 3px 12px;
+  border-color: #07152f;
+  background: #07152f;
+}
+
+.ecosystem-architecture__brand-logo {
+  width: 128px;
 }
 
 .ecosystem-architecture__chip--infra-1,
@@ -4186,6 +4232,15 @@ a {
   line-height: 1.8;
 }
 
+.product-detail__brand-logo {
+  width: min(360px, 100%);
+  margin-bottom: 20px;
+}
+
+.hero-copy .product-detail__category {
+  margin: 20px 0 0;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -4431,6 +4486,11 @@ a {
   .ecosystem-heading {
     grid-template-columns: 1fr;
     gap: 42px;
+  }
+
+  .product-detail-hero .new-hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   .platform-grid,

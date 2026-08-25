@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { createPageMetadata } from "@/lib/metadata";
 import { products } from "@/lib/products";
+import ProductBrandLogo from "@/components/ProductBrandLogo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Products at Realtegic",
@@ -64,9 +65,20 @@ export default function ProductsPage() {
 
                     <div className="product-card-info">
 
-                      <div className="product-icon">
-                        <Icon size={34} strokeWidth={1.5} />
-                      </div>
+                      {product.logo ? (
+                        <ProductBrandLogo
+                          src={product.logo}
+                          alt={product.logoAlt ?? `${product.title} logo`}
+                          width={product.logoWidth ?? 1200}
+                          height={product.logoHeight ?? 400}
+                          sizes="(max-width: 650px) calc(100vw - 72px), 260px"
+                          className="products-page__brand-logo"
+                        />
+                      ) : (
+                        <div className="product-icon">
+                          <Icon size={34} strokeWidth={1.5} />
+                        </div>
+                      )}
 
                       <div className="product-category">
                         {product.category}

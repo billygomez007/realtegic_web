@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import SectionEyebrow from "@/components/SectionEyebrow";
+import ProductBrandLogo from "@/components/ProductBrandLogo";
 import { createPageMetadata } from "@/lib/metadata";
 import { productBySlug, products } from "@/lib/products";
 
@@ -49,14 +50,30 @@ export default async function ProductDetailPage({
 
   return (
     <main className="new-home">
-      <section className="new-hero infrastructure-hero">
+      <section className="new-hero infrastructure-hero product-detail-hero">
         <div className="new-wrap new-hero-grid">
           <div className="hero-copy">
-            <SectionEyebrow>{product.category}</SectionEyebrow>
+            {product.logo ? (
+              <ProductBrandLogo
+                src={product.logo}
+                alt={product.logoAlt ?? `${product.title} logo`}
+                width={product.logoWidth ?? 1200}
+                height={product.logoHeight ?? 400}
+                sizes="(max-width: 650px) calc(100vw - 72px), 360px"
+                className="product-detail__brand-logo"
+              />
+            ) : (
+              <SectionEyebrow>{product.category}</SectionEyebrow>
+            )}
             <h1>
               {product.title}
               <span> built for practical outcomes.</span>
             </h1>
+            {product.logo ? (
+              <SectionEyebrow className="product-detail__category">
+                {product.category}
+              </SectionEyebrow>
+            ) : null}
             <p>{product.summary}</p>
             <div className="hero-actions">
               <Link href="/products" className="rt-btn rt-btn-primary">

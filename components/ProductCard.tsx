@@ -1,9 +1,11 @@
 import { ArrowRight, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/Button";
+import ProductBrandLogo from "@/components/ProductBrandLogo";
 import StatusBadge, { type StatusBadgeType } from "@/components/StatusBadge";
+import type { ProductBrandFields } from "@/lib/product-brand";
 
-export interface ProductCardData {
+export interface ProductCardData extends ProductBrandFields {
   productName: string;
   displayName: string;
   slug: string;
@@ -14,10 +16,11 @@ export interface ProductCardData {
   route: string;
   externalRoute?: string;
   visual: string;
-  logo: LucideIcon;
+  icon: LucideIcon;
   featured: boolean;
   ctaLabel: string;
   market: string;
+  statusLabel?: string;
 }
 
 export interface ProductCardProps {
@@ -32,8 +35,8 @@ function formatStatusLabel(status: StatusBadgeType) {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const Icon = product.logo;
-  const href = product.externalRoute ?? product.route;
+  const Icon = product.icon;
+  const href = product.externalUrl ?? product.externalRoute ?? product.route;
 
   return (
     <article
@@ -42,12 +45,23 @@ export default function ProductCard({ product }: ProductCardProps) {
       id={product.slug}
     >
       <div className="product-card__top">
-        <div className="product-card__icon" aria-hidden="true">
-          <Icon size={24} />
-        </div>
+        {product.logo ? (
+          <ProductBrandLogo
+            src={product.logo}
+            alt={product.logoAlt ?? `${product.displayName} logo`}
+            width={product.logoWidth ?? 1200}
+            height={product.logoHeight ?? 400}
+            sizes="(max-width: 650px) 70vw, 260px"
+            className="product-card__brand-logo"
+          />
+        ) : (
+          <div className="product-card__icon" aria-hidden="true">
+            <Icon size={24} />
+          </div>
+        )}
 
         <StatusBadge status={product.availabilityStatus}>
-          {formatStatusLabel(product.availabilityStatus)}
+          {product.statusLabel ?? formatStatusLabel(product.availabilityStatus)}
         </StatusBadge>
       </div>
 

@@ -1,3 +1,6 @@
+import ProductBrandLogo from "@/components/ProductBrandLogo";
+import type { ProductBrandFields } from "@/lib/product-brand";
+
 const infrastructureLayers = [
   "AI",
   "Communications",
@@ -7,14 +10,24 @@ const infrastructureLayers = [
   "Data",
 ];
 
-const productLayers = [
-  "SuperKuba",
-  "PropertyOS",
-  "TrustPay",
-  "Institutions",
-  "GovTech",
-  "Mobility",
-  "Future Products",
+type EcosystemProductLayer = ProductBrandFields & {
+  name: string;
+};
+
+const productLayers: EcosystemProductLayer[] = [
+  {
+    name: "SuperKuba",
+    logo: "/logos/superkuba-logo.png",
+    logoAlt: "SuperKuba",
+    logoWidth: 2172,
+    logoHeight: 724,
+  },
+  { name: "PropertyOS" },
+  { name: "TrustPay" },
+  { name: "Institutions" },
+  { name: "GovTech" },
+  { name: "Mobility" },
+  { name: "Future Products" },
 ];
 
 const outcomes = ["Businesses", "Developers", "Institutions", "Governments"];
@@ -48,8 +61,24 @@ export default function EcosystemArchitecture() {
           <strong>Products & Applications</strong>
           <div className="ecosystem-architecture__layer-grid ecosystem-architecture__layer-grid--products">
             {productLayers.map((layer, index) => (
-              <span key={layer} className={`ecosystem-architecture__chip ecosystem-architecture__chip--product-${index + 1}`}>
-                {layer}
+              <span
+                key={layer.name}
+                className={`ecosystem-architecture__chip ecosystem-architecture__chip--product-${index + 1} ${
+                  layer.logo ? "ecosystem-architecture__chip--branded" : ""
+                }`}
+              >
+                {layer.logo ? (
+                  <ProductBrandLogo
+                    src={layer.logo}
+                    alt={layer.logoAlt ?? layer.name}
+                    width={layer.logoWidth ?? 1200}
+                    height={layer.logoHeight ?? 400}
+                    sizes="128px"
+                    className="ecosystem-architecture__brand-logo"
+                  />
+                ) : (
+                  layer.name
+                )}
               </span>
             ))}
           </div>
