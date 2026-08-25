@@ -1,4 +1,4 @@
-import { BrainCircuit, Building2, type LucideIcon } from "lucide-react";
+import { BrainCircuit, Building2, PanelsTopLeft, type LucideIcon } from "lucide-react";
 import type { ProductBrandFields } from "@/lib/product-brand";
 
 export type ProductData = ProductBrandFields & {
@@ -17,6 +17,7 @@ export type ProductData = ProductBrandFields & {
   capabilityLabel?: string;
   capabilityLine?: string[];
   ctaLabel?: string;
+  externalCtaLabel?: string;
   signupUrl?: string;
   seoTitle?: string;
   seoDescription?: string;
@@ -82,6 +83,42 @@ export const products: ProductData[] = [
       "Operational visibility across property workflows",
     ],
     availability: "The product is actively in development and is not presented as a general public launch or fully available platform yet.",
+  },
+  {
+    slug: "tap-and-order",
+    title: "Tap & Order",
+    category: "SUPER APP",
+    description:
+      "A connected super app bringing marketplace, mobility and delivery services into one digital experience.",
+    status: "PRODUCT",
+    number: "03",
+    icon: PanelsTopLeft,
+    logo: "/logos/tap-and-order-logo.png",
+    logoAlt: "Tap & Order",
+    logoWidth: 9000,
+    logoHeight: 3000,
+    externalUrl: "https://www.taporderafrica.com",
+    externalCtaLabel: "Visit Tap & Order",
+    ctaLabel: "Learn More",
+    seoTitle:
+      "Tap & Order | Marketplace, Mobility & Delivery Super App | Realtegic",
+    seoDescription:
+      "Tap & Order is a Realtegic super app connecting marketplace, mobility and delivery services through one digital platform.",
+    features: [
+      "Marketplace",
+      "Mobility",
+      "Delivery",
+      "Connected experience",
+    ],
+    summary:
+      "Tap & Order brings commerce, mobility and delivery services together through one connected consumer platform.",
+    useCases: [
+      "Discover and order products from participating merchants",
+      "Access mobility services through the same ecosystem",
+      "Coordinate delivery as part of a connected experience",
+    ],
+    availability:
+      "Tap & Order connects marketplace, mobility and delivery within one product ecosystem.",
   },
 ];
 

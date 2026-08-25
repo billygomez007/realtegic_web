@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import ProductBrandLogo from "@/components/ProductBrandLogo";
 import SuperKubaShowcase from "@/components/SuperKubaShowcase";
+import TapOrderShowcase from "@/components/TapOrderShowcase";
 import { createPageMetadata } from "@/lib/metadata";
 import { productBySlug, products } from "@/lib/products";
 
@@ -55,6 +56,10 @@ export default async function ProductDetailPage({
 
   if (product.slug === "kuba-ai") {
     return <SuperKubaShowcase product={product} />;
+  }
+
+  if (product.slug === "tap-and-order") {
+    return <TapOrderShowcase product={product} />;
   }
 
   const Icon = product.icon;

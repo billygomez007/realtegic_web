@@ -109,6 +109,18 @@ export default function ProductsPage() {
                         <ArrowRight size={17} />
                       </Link>
 
+                      {product.externalCtaLabel && product.externalUrl ? (
+                        <a
+                          href={product.externalUrl}
+                          className="product-link product-link--external"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {product.externalCtaLabel}
+                          <ArrowRight size={17} />
+                        </a>
+                      ) : null}
+
                     </div>
 
                     <div className="product-card-visual">

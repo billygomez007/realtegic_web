@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
+import { products } from "@/lib/products";
 
 const routes = [
   "/",
@@ -16,6 +17,7 @@ const routes = [
   "/privacy",
   "/terms",
   "/industries",
+  ...products.map((product) => `/products/${product.slug}`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -28,4 +30,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "/" ? 1 : 0.7,
   }));
 }
-

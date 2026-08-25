@@ -2073,6 +2073,11 @@ a {
   font-weight: 800;
 }
 
+.product-link--external {
+  margin-left: 22px;
+  color: #a9b7ca;
+}
+
 /* PRODUCT VISUAL */
 
 .product-card-visual {
@@ -2608,6 +2613,10 @@ a {
 
   .industries-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-link--external {
+    margin-left: 16px;
   }
 }
 
@@ -7668,5 +7677,669 @@ a {
 
   .superkuba-final-cta h2 {
     font-size: 50px;
+  }
+}
+
+/* =========================================================
+   TAP & ORDER PRODUCT SHOWCASE
+   ========================================================= */
+
+.tap-order-showcase {
+  width: 100%;
+  overflow-x: hidden;
+  background: #fff;
+  color: #07152f;
+}
+
+.tap-order-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 118px 0;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(22, 131, 255, .2), transparent 28%),
+    radial-gradient(circle at 72% 82%, rgba(13, 217, 255, .1), transparent 26%),
+    linear-gradient(135deg, #050812 0%, #07152f 62%, #08294b 100%);
+}
+
+.tap-order-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 75% 45%, #000, transparent 74%);
+  pointer-events: none;
+}
+
+.tap-order-hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(390px, .92fr);
+  gap: clamp(54px, 7vw, 112px);
+  align-items: center;
+}
+
+.tap-order-hero__copy {
+  min-width: 0;
+}
+
+.tap-order-hero .section-eyebrow,
+.tap-order-final-cta .section-eyebrow {
+  color: #8cc8ff;
+}
+
+.tap-order-hero__title {
+  margin: 0;
+  line-height: 0;
+}
+
+.tap-order-hero__logo {
+  width: min(520px, 100%);
+}
+
+.tap-order-hero h2 {
+  margin: 24px 0 0;
+  color: #1683ff;
+  font-size: clamp(30px, 3.5vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -.05em;
+}
+
+.tap-order-hero__copy > p {
+  max-width: 720px;
+  margin: 24px 0 0;
+  color: #b3bfd0;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.tap-order-hero__copy > p + p {
+  margin-top: 8px;
+}
+
+.tap-order-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.tap-order-button {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 800;
+  transition:
+    transform .2s ease,
+    background-color .2s ease,
+    border-color .2s ease;
+}
+
+.tap-order-button:hover {
+  transform: translateY(-2px);
+}
+
+.tap-order-button--primary {
+  background: #1683ff;
+  color: #fff;
+  box-shadow: 0 18px 36px rgba(22, 131, 255, .24);
+}
+
+.tap-order-button--primary:hover {
+  background: #0877ed;
+}
+
+.tap-order-button--secondary {
+  border-color: rgba(255, 255, 255, .18);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+.tap-order-button--secondary:hover {
+  background: rgba(255, 255, 255, .13);
+}
+
+.tap-order-hero__visual {
+  position: relative;
+  padding: 46px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 32px;
+  background: rgba(8, 14, 29, .82);
+  box-shadow: 0 34px 80px rgba(0, 0, 0, .32);
+  backdrop-filter: blur(18px);
+}
+
+.tap-order-app-card {
+  display: grid;
+  justify-items: center;
+  padding: 40px 24px;
+  border: 1px solid rgba(140, 200, 255, .18);
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(22, 131, 255, .22), transparent 45%),
+    rgba(255, 255, 255, .045);
+  text-align: center;
+}
+
+.tap-order-app-card__logo {
+  width: min(330px, 100%);
+  margin-bottom: 16px;
+}
+
+.tap-order-app-card small {
+  color: #8cc8ff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.tap-order-app-card > span:last-child {
+  margin-top: 9px;
+  color: #a9b7ca;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.tap-order-hero__services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tap-order-hero__services span {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 8px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 13px;
+  color: #d7e1ef;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.tap-order-hero__services svg {
+  flex: 0 0 auto;
+  color: #8cc8ff;
+}
+
+.tap-order-section {
+  padding: 112px 0;
+}
+
+.tap-order-section--soft {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(22, 131, 255, .055), transparent 23%),
+    #f7f9fc;
+}
+
+.tap-order-section__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .7fr);
+  gap: 60px;
+  align-items: end;
+}
+
+.tap-order-section__intro h2,
+.tap-order-connected__copy h2 {
+  max-width: 820px;
+  margin: 18px 0 0;
+  font-size: clamp(48px, 5.5vw, 76px);
+  line-height: .94;
+  letter-spacing: -.065em;
+}
+
+.tap-order-section__intro h2 span,
+.tap-order-connected__copy h2 span {
+  color: #1683ff;
+}
+
+.tap-order-section__intro > p,
+.tap-order-connected__copy > p {
+  margin: 0;
+  color: #66748b;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.tap-order-architecture {
+  margin-top: 60px;
+  padding: clamp(28px, 5vw, 62px);
+  border: 1px solid #dce4ed;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(22, 131, 255, .12), transparent 30%),
+    #07152f;
+}
+
+.tap-order-architecture__core {
+  display: grid;
+  width: min(360px, 100%);
+  justify-items: center;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid rgba(140, 200, 255, .22);
+  border-radius: 20px;
+  background: rgba(22, 131, 255, .11);
+  color: #fff;
+  text-align: center;
+}
+
+.tap-order-architecture__logo {
+  width: min(250px, 100%);
+}
+
+.tap-order-architecture__core strong {
+  margin-top: 2px;
+  color: #8cc8ff;
+  font-size: 10px;
+  letter-spacing: .18em;
+}
+
+.tap-order-architecture__line {
+  width: 1px;
+  height: 50px;
+  margin: 0 auto;
+  background: rgba(140, 200, 255, .35);
+}
+
+.tap-order-architecture__nodes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tap-order-architecture__nodes > div {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .045);
+  color: #fff;
+}
+
+.tap-order-architecture__nodes svg {
+  flex: 0 0 auto;
+  color: #8cc8ff;
+}
+
+.tap-order-architecture__nodes strong {
+  font-size: 16px;
+}
+
+.tap-order-verticals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.tap-order-vertical {
+  min-width: 0;
+  padding: clamp(28px, 3.2vw, 44px);
+  border: 1px solid #dce4ed;
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 18px 38px rgba(7, 21, 47, .045);
+}
+
+.tap-order-vertical__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tap-order-vertical__top > span {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 15px;
+  background: #eaf4ff;
+  color: #1683ff;
+}
+
+.tap-order-vertical__top small {
+  color: #9aa8ba;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.tap-order-vertical h2 {
+  margin: 34px 0 0;
+  font-size: clamp(34px, 3.3vw, 48px);
+  line-height: 1;
+  letter-spacing: -.055em;
+}
+
+.tap-order-vertical > p {
+  margin: 18px 0 0;
+  color: #66748b;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.tap-order-vertical ul {
+  display: grid;
+  gap: 10px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tap-order-vertical li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #344158;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.tap-order-vertical li svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: #1683ff;
+}
+
+.tap-order-connected__grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
+  gap: clamp(54px, 7vw, 100px);
+  align-items: center;
+}
+
+.tap-order-connected__copy > p {
+  max-width: 620px;
+  margin-top: 24px;
+}
+
+.tap-order-mobility-callout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  max-width: 620px;
+  margin-top: 34px;
+  padding: 22px;
+  border: 1px solid #cfe2f6;
+  border-radius: 18px;
+  background: #f1f8ff;
+}
+
+.tap-order-mobility-callout > svg {
+  flex: 0 0 auto;
+  color: #1683ff;
+}
+
+.tap-order-mobility-callout div {
+  display: grid;
+  gap: 7px;
+}
+
+.tap-order-mobility-callout strong {
+  font-size: 15px;
+}
+
+.tap-order-mobility-callout span {
+  color: #66748b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.tap-order-journey {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 30px;
+  border: 1px solid #dce4ed;
+  border-radius: 28px;
+  background: #f7f9fc;
+  list-style: none;
+}
+
+.tap-order-journey li {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid #e0e7ef;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.tap-order-journey li > span {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 13px;
+  background: #eaf4ff;
+  color: #1683ff;
+}
+
+.tap-order-journey li > div {
+  display: grid;
+  gap: 4px;
+}
+
+.tap-order-journey small {
+  color: #1683ff;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.tap-order-journey strong {
+  font-size: 15px;
+}
+
+.tap-order-journey li > svg {
+  color: #a8b8ca;
+}
+
+.tap-order-journey .tap-order-journey__complete {
+  grid-template-columns: auto minmax(0, 1fr);
+  background: #07152f;
+  color: #fff;
+}
+
+.tap-order-journey__complete svg {
+  color: #8cc8ff;
+}
+
+.tap-order-built {
+  padding: 82px 0;
+  border-top: 1px solid #e5eaf0;
+  background: #f7f9fc;
+}
+
+.tap-order-built__grid {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: 70px;
+  align-items: center;
+}
+
+.tap-order-built h2 {
+  margin: 0;
+  font-size: clamp(42px, 5vw, 66px);
+  line-height: .95;
+  letter-spacing: -.06em;
+}
+
+.tap-order-built p {
+  max-width: 720px;
+  margin: 0;
+  color: #66748b;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.tap-order-built a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: #1683ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.tap-order-final-cta {
+  padding: 118px 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(22, 131, 255, .22), transparent 34%),
+    linear-gradient(135deg, #07152f, #050812);
+  color: #fff;
+  text-align: center;
+}
+
+.tap-order-final-cta h2 {
+  max-width: 960px;
+  margin: 20px auto 0;
+  font-size: clamp(56px, 7vw, 94px);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+.tap-order-final-cta p {
+  max-width: 680px;
+  margin: 26px auto 0;
+  color: #a9b7ca;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.tap-order-actions--center {
+  justify-content: center;
+}
+
+@media (max-width: 950px) {
+  .tap-order-hero__grid,
+  .tap-order-section__intro,
+  .tap-order-connected__grid,
+  .tap-order-built__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tap-order-section__intro,
+  .tap-order-built__grid {
+    gap: 32px;
+  }
+
+  .tap-order-section__intro > p {
+    max-width: 720px;
+  }
+
+  .tap-order-verticals {
+    grid-template-columns: 1fr;
+  }
+
+  .tap-order-connected__grid {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 650px) {
+  .tap-order-hero,
+  .tap-order-section,
+  .tap-order-final-cta {
+    padding: 78px 0;
+  }
+
+  .tap-order-hero__logo {
+    width: min(360px, 100%);
+  }
+
+  .tap-order-hero h2 {
+    font-size: 34px;
+  }
+
+  .tap-order-hero__copy > p {
+    font-size: 15px;
+  }
+
+  .tap-order-actions {
+    flex-direction: column;
+  }
+
+  .tap-order-button {
+    width: 100%;
+  }
+
+  .tap-order-hero__visual {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .tap-order-app-card {
+    padding: 32px 16px;
+  }
+
+  .tap-order-hero__services {
+    grid-template-columns: 1fr;
+  }
+
+  .tap-order-section__intro h2,
+  .tap-order-connected__copy h2 {
+    font-size: 43px;
+  }
+
+  .tap-order-architecture {
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+
+  .tap-order-architecture__nodes {
+    grid-template-columns: 1fr;
+  }
+
+  .tap-order-architecture__nodes > div {
+    min-height: 72px;
+  }
+
+  .tap-order-vertical {
+    padding: 26px;
+    border-radius: 22px;
+  }
+
+  .tap-order-journey {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .tap-order-journey li {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .tap-order-journey li > svg {
+    display: none;
+  }
+
+  .tap-order-built {
+    padding: 72px 0;
+  }
+
+  .tap-order-final-cta h2 {
+    font-size: 52px;
   }
 }
