@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BackToTop from "@/components/BackToTop";
+import KubaWidget from "@/components/kuba-widget";
 import { serializeJsonLd } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <KubaWidget />
         <BackToTop />
       </body>
     </html>

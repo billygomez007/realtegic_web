@@ -7,6 +7,7 @@ const SCROLL_THRESHOLD = 500;
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     let animationFrame: number | null = null;
@@ -34,6 +35,17 @@ export default function BackToTop() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateChatVisibility = (event: Event) => {
+      setIsChatOpen((event as CustomEvent<boolean>).detail);
+    };
+
+    window.addEventListener("kuba-chat-visibility", updateChatVisibility);
+    return () => {
+      window.removeEventListener("kuba-chat-visibility", updateChatVisibility);
+    };
+  }, []);
+
   const scrollToTop = () => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -45,14 +57,16 @@ export default function BackToTop() {
     });
   };
 
+  const shouldShow = isVisible && !isChatOpen;
+
   return (
     <button
       type="button"
-      className={`back-to-top ${isVisible ? "back-to-top--visible" : ""}`}
+      className={`back-to-top ${shouldShow ? "back-to-top--visible" : ""}`}
       onClick={scrollToTop}
       aria-label="Back to top"
-      aria-hidden={!isVisible}
-      tabIndex={isVisible ? 0 : -1}
+      aria-hidden={!shouldShow}
+      tabIndex={shouldShow ? 0 : -1}
     >
       <ArrowUp size={20} strokeWidth={2.25} aria-hidden="true" />
     </button>

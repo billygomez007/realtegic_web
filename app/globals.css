@@ -8350,7 +8350,7 @@ a {
   position: fixed;
   z-index: 900;
   right: max(24px, calc((100vw - var(--max-width-content)) / 2 + 12px));
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(108px + env(safe-area-inset-bottom, 0px));
   display: grid;
   width: 48px;
   height: 48px;
@@ -8397,12 +8397,375 @@ a {
 @media (max-width: 650px) {
   .back-to-top {
     right: 18px;
-    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(86px + env(safe-area-inset-bottom, 0px));
     width: 44px;
     height: 44px;
     border-radius: 14px;
   }
 }
+
+/* =========================================================
+   GLOBAL KUBA AI CHAT
+   ========================================================= */
+
+  .kuba-float {
+    position: fixed;
+    z-index: 950;
+    right: max(24px, calc((100vw - var(--max-width-content)) / 2 + 12px));
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+    padding: 7px 17px 7px 8px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 18px;
+    background: #07152f;
+    color: #fff;
+    box-shadow: 0 14px 38px rgba(7, 21, 47, .28);
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .kuba-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .kuba-float:hover {
+    background: #10294e;
+    transform: translateY(-2px);
+  }
+
+  .kuba-float:focus-visible,
+  .kuba-chat button:focus-visible,
+  .kuba-chat input:focus-visible {
+    outline: 3px solid rgba(22, 131, 255, .5);
+    outline-offset: 3px;
+  }
+
+  .kuba-float-icon,
+  .kuba-avatar {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 13px;
+    background: #1683ff;
+    color: #fff;
+  }
+
+  .kuba-float-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .kuba-float-copy {
+    display: grid;
+    gap: 2px;
+    text-align: left;
+  }
+
+  .kuba-float-copy strong {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .kuba-float-copy small {
+    color: #aebbd0;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .kuba-chat {
+    position: fixed;
+    z-index: 960;
+    right: max(24px, calc((100vw - var(--max-width-content)) / 2 + 12px));
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
+    width: min(390px, calc(100vw - 32px));
+    max-height: min(680px, calc(100dvh - 48px));
+    overflow: hidden;
+    border: 1px solid #dce4ed;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 24px 70px rgba(7, 21, 47, .28);
+    color: #07152f;
+  }
+
+  .kuba-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: #07152f;
+    color: #fff;
+  }
+
+  .kuba-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kuba-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .kuba-brand > div:last-child {
+    display: grid;
+    gap: 3px;
+  }
+
+  .kuba-brand strong {
+    font-size: 14px;
+  }
+
+  .kuba-brand small {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #b9c5d7;
+    font-size: 10px;
+  }
+
+  .kuba-brand i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #39d98a;
+    box-shadow: 0 0 0 3px rgba(57, 217, 138, .14);
+  }
+
+  .kuba-close {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .kuba-welcome {
+    padding: 20px 20px 14px;
+  }
+
+  .kuba-welcome > span {
+    color: #1683ff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+
+  .kuba-welcome h2 {
+    margin: 7px 0 5px;
+    font-size: 23px;
+    line-height: 1.2;
+  }
+
+  .kuba-welcome p {
+    margin: 0;
+    color: #66748b;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .kuba-suggestions {
+    display: flex;
+    gap: 7px;
+    padding: 0 20px 14px;
+    overflow-x: auto;
+  }
+
+  .kuba-suggestions button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 10px;
+    border: 1px solid #dce4ed;
+    border-radius: 999px;
+    background: #f7f9fc;
+    color: #34445b;
+    font: 700 10px/1.2 inherit;
+    cursor: pointer;
+  }
+
+  .kuba-suggestions button:hover {
+    border-color: #9cc8ff;
+    background: #eff6ff;
+  }
+
+  .kuba-messages {
+    min-height: 150px;
+    max-height: 270px;
+    padding: 16px 20px;
+    overflow-y: auto;
+    border-block: 1px solid #e7edf4;
+    background: #f6f9fc;
+  }
+
+  @media (max-height: 520px) {
+    .kuba-welcome,
+    .kuba-suggestions {
+      display: none;
+    }
+
+    .kuba-messages {
+      min-height: 0;
+    }
+  }
+
+  .kuba-msg {
+    width: fit-content;
+    max-width: 88%;
+    padding: 10px 12px;
+    border: 1px solid #dce4ed;
+    border-radius: 5px 14px 14px;
+    background: #fff;
+    color: #34445b;
+    font-size: 12px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .kuba-msg + .kuba-msg {
+    margin-top: 10px;
+  }
+
+  .kuba-user {
+    margin-left: auto;
+    border-color: #1683ff;
+    border-radius: 14px 5px 14px 14px;
+    background: #1683ff;
+    color: #fff;
+  }
+
+  .kuba-thinking {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #66748b;
+  }
+
+  .kuba-thinking svg {
+    animation: contact-form-spin .8s linear infinite;
+  }
+
+  .kuba-input {
+    display: grid;
+    grid-template-columns: 1fr 42px;
+    gap: 9px;
+    padding: 14px 16px 8px;
+  }
+
+  .kuba-input input {
+    min-width: 0;
+    height: 42px;
+    padding: 0 13px;
+    border: 1px solid #d4deea;
+    border-radius: 12px;
+    background: #fff;
+    color: #07152f;
+    font: 13px/1.4 inherit;
+  }
+
+  .kuba-input button {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 0;
+    border-radius: 12px;
+    background: #1683ff;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .kuba-input button:disabled,
+  .kuba-suggestions button:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+  }
+
+  .kuba-status {
+    min-height: 27px;
+    padding: 0 17px 12px;
+    color: #94a3b8;
+    font-size: 9px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .kuba-status--error {
+    color: #c83238;
+    font-size: 10px;
+  }
+
+  @media (max-width: 650px) {
+    .kuba-float {
+      right: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+      min-height: 52px;
+      padding: 5px;
+      border-radius: 16px;
+    }
+
+    .kuba-float-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .kuba-float-copy {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .kuba-chat {
+      right: 12px;
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      width: calc(100vw - 24px);
+      max-height: calc(100dvh - 24px - env(safe-area-inset-bottom, 0px));
+      border-radius: 18px;
+    }
+
+    .kuba-welcome {
+      padding-top: 16px;
+    }
+
+    .kuba-messages {
+      max-height: min(250px, 34dvh);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kuba-float {
+      transition: none;
+    }
+
+    .kuba-float:hover {
+      transform: none;
+    }
+
+    .kuba-thinking svg {
+      animation: none;
+    }
+  }
 
 @media (prefers-reduced-motion: reduce) {
   .back-to-top {

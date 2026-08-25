@@ -1,41 +1,145 @@
 "use client";
 
-import { useState } from "react";
-import { Bot, X, Send, ArrowRight } from "lucide-react";
+import { FormEvent, useEffect, useId, useRef, useState } from "react";
+import { ArrowRight, Bot, Loader2, Send, X } from "lucide-react";
+
+interface ChatMessage {
+  id: string;
+  from: "kuba" | "user";
+  text: string;
+}
+
+const initialMessage: ChatMessage = {
+  id: "welcome",
+  from: "kuba",
+  text: "Hello. I’m Kuba, the AI representative for Realtegic. How can I help you today?",
+};
+
+const suggestions = [
+  "What is Realtegic?",
+  "What products do you offer?",
+  "Tell me about SuperKuba",
+];
 
 export default function KubaWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      from: "kuba",
-      text: "Hello. I’m Kuba, the AI representative for Realtegic. How can I help you today?",
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
+  const [conversationId, setConversationId] = useState<string>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const panelId = useId();
+  const statusId = useId();
+  const launcherRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const messageEndRef = useRef<HTMLDivElement>(null);
+  const restoreLauncherFocusRef = useRef(false);
 
-  const send = (text = input) => {
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("kuba-chat-visibility", { detail: open })
+    );
+
+    if (open) {
+      inputRef.current?.focus();
+    } else if (restoreLauncherFocusRef.current) {
+      restoreLauncherFocusRef.current = false;
+      launcherRef.current?.focus();
+    }
+
+    return () => {
+      if (open) {
+        window.dispatchEvent(
+          new CustomEvent("kuba-chat-visibility", { detail: false })
+        );
+      }
+    };
+  }, [open]);
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ block: "nearest" });
+  }, [messages, loading]);
+
+  async function send(text = input) {
     const value = text.trim();
-    if (!value) return;
+    if (!value || loading) {
+      return;
+    }
 
-    setMessages((m) => [
-      ...m,
-      { from: "user", text: value },
-      {
-        from: "kuba",
-        text: "I can help you explore Realtegic, our products, our technology, and how you can work with us.",
-      },
-    ]);
-
+    const userMessage: ChatMessage = {
+      id: crypto.randomUUID(),
+      from: "user",
+      text: value,
+    };
+    setMessages((current) => [...current, userMessage]);
     setInput("");
-  };
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/superkuba/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: value, conversationId }),
+      });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        response?: string;
+        conversationId?: string;
+        error?: string;
+      };
+
+      if (!response.ok || !result.ok || !result.response) {
+        throw new Error(
+          result.error || "Kuba is unavailable right now. Please try again shortly."
+        );
+      }
+
+      setConversationId(result.conversationId);
+      setMessages((current) => [
+        ...current,
+        {
+          id: crypto.randomUUID(),
+          from: "kuba",
+          text: result.response!,
+        },
+      ]);
+    } catch (requestError) {
+      setError(
+        requestError instanceof Error
+          ? requestError.message
+          : "Kuba is unavailable right now. Please try again shortly."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    void send();
+  }
+
+  function closeChat() {
+    restoreLauncherFocusRef.current = true;
+    setOpen(false);
+  }
 
   if (!open) {
     return (
-      <button className="kuba-float" onClick={() => setOpen(true)}>
-        <span className="kuba-float-icon">
-          <Bot size={24} />
+      <button
+        ref={launcherRef}
+        type="button"
+        className="kuba-float"
+        onClick={() => setOpen(true)}
+        aria-label="Open Kuba AI chat"
+        aria-expanded="false"
+        aria-controls={panelId}
+      >
+        <span className="kuba-float-icon" aria-hidden="true">
+          <Bot size={23} />
         </span>
-        <span>
+        <span className="kuba-float-copy">
           <strong>Kuba AI</strong>
           <small>Ask Realtegic</small>
         </span>
@@ -44,78 +148,110 @@ export default function KubaWidget() {
   }
 
   return (
-    <div className="kuba-chat">
+    <section
+      className="kuba-chat"
+      id={panelId}
+      aria-label="Kuba AI chat"
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          closeChat();
+        }
+      }}
+    >
       <div className="kuba-chat-header">
         <div className="kuba-brand">
-          <div className="kuba-avatar">
-            <Bot size={22} />
+          <div className="kuba-avatar" aria-hidden="true">
+            <Bot size={21} />
           </div>
           <div>
             <strong>Kuba AI</strong>
             <small>
-              <i /> Realtegic AI
+              <i aria-hidden="true" /> Realtegic AI
             </small>
           </div>
         </div>
 
-        <button onClick={() => setOpen(false)}>
-          <X size={20} />
+        <button
+          type="button"
+          className="kuba-close"
+          onClick={closeChat}
+          aria-label="Close Kuba AI chat"
+        >
+          <X size={20} aria-hidden="true" />
         </button>
       </div>
 
       <div className="kuba-welcome">
         <span>REALTEGIC AI WORKFORCE</span>
-        <h3>How can I help?</h3>
-        <p>
-          Ask me anything about Realtegic, our products or working with us.
-        </p>
+        <h2>How can I help?</h2>
+        <p>Ask me anything about Realtegic, our products or working with us.</p>
       </div>
 
-      <div className="kuba-suggestions">
-        <button onClick={() => send("What is Realtegic?")}>
-          What is Realtegic? <ArrowRight size={14} />
-        </button>
-
-        <button onClick={() => send("What products do you offer?")}>
-          What products do you offer? <ArrowRight size={14} />
-        </button>
-
-        <button onClick={() => send("Tell me about Kuba AI")}>
-          Tell me about Kuba AI <ArrowRight size={14} />
-        </button>
-      </div>
-
-      <div className="kuba-messages">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`kuba-msg ${
-              message.from === "user" ? "kuba-user" : ""
-            }`}
+      <div className="kuba-suggestions" aria-label="Suggested questions">
+        {suggestions.map((suggestion) => (
+          <button
+            type="button"
+            key={suggestion}
+            onClick={() => void send(suggestion)}
+            disabled={loading}
           >
-            {message.text}
-          </div>
+            {suggestion} <ArrowRight size={14} aria-hidden="true" />
+          </button>
         ))}
       </div>
 
-      <div className="kuba-input">
+      <div className="kuba-messages" role="log" aria-live="polite" aria-relevant="additions">
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`kuba-msg ${message.from === "user" ? "kuba-user" : ""}`}
+          >
+            <span className="kuba-visually-hidden">
+              {message.from === "user" ? "You" : "Kuba"}:{" "}
+            </span>
+            {message.text}
+          </div>
+        ))}
+        {loading ? (
+          <div className="kuba-msg kuba-thinking">
+            <Loader2 size={15} aria-hidden="true" />
+            Kuba is thinking…
+          </div>
+        ) : null}
+        <div ref={messageEndRef} />
+      </div>
+
+      <form className="kuba-input" onSubmit={handleSubmit}>
+        <label className="kuba-visually-hidden" htmlFor={`${panelId}-input`}>
+          Message Kuba AI
+        </label>
         <input
+          ref={inputRef}
+          id={`${panelId}-input`}
           value={input}
           placeholder="Ask Kuba..."
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") send();
-          }}
+          maxLength={1000}
+          onChange={(event) => setInput(event.target.value)}
+          aria-describedby={error ? statusId : undefined}
+          disabled={loading}
         />
-
-        <button onClick={() => send()}>
-          <Send size={17} />
+        <button
+          type="submit"
+          disabled={loading || !input.trim()}
+          aria-label="Send message"
+        >
+          <Send size={17} aria-hidden="true" />
         </button>
-      </div>
+      </form>
 
-      <div className="kuba-powered">
-        Powered by <strong>Kuba AI</strong> · Realtegic
+      <div
+        className={`kuba-status ${error ? "kuba-status--error" : ""}`}
+        id={statusId}
+        role="status"
+        aria-live="polite"
+      >
+        {error || "Powered by SuperKuba · Realtegic"}
       </div>
-    </div>
+    </section>
   );
 }

@@ -65,3 +65,18 @@ In development, preview the email-safe HTML templates at:
 - `/api/contact/preview?company=none`
 
 The preview route returns `404` in production.
+
+## SuperKuba website chat
+
+The global Kuba AI widget sends messages through the server-side
+`/api/superkuba/chat` proxy to SuperKuba's official website-chat endpoint.
+
+Configure this server-only variable locally and in the Vercel Production
+environment:
+
+```bash
+SUPERKUBA_WEBSITE_CHAT_PUBLIC_KEY=...
+```
+
+The value is the active Website Chat integration public key generated in the
+SuperKuba dashboard. Do not place private SuperKuba credentials in client code.
