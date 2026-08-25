@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import ProductBrandLogo from "@/components/ProductBrandLogo";
+import SuperKubaShowcase from "@/components/SuperKubaShowcase";
 import { createPageMetadata } from "@/lib/metadata";
 import { productBySlug, products } from "@/lib/products";
 
@@ -27,11 +28,17 @@ export async function generateMetadata({
     });
   }
 
-  return createPageMetadata({
-    title: `${product.title} | Realtegic Products`,
-    description: product.description,
+  const metadata = createPageMetadata({
+    title: product.seoTitle ?? `${product.title} | Realtegic Products`,
+    description: product.seoDescription ?? product.description,
     path: `/products/${slug}`,
   });
+
+  if (product.seoTitle) {
+    metadata.title = { absolute: product.seoTitle };
+  }
+
+  return metadata;
 }
 
 export default async function ProductDetailPage({
@@ -44,6 +51,10 @@ export default async function ProductDetailPage({
 
   if (!product) {
     notFound();
+  }
+
+  if (product.slug === "kuba-ai") {
+    return <SuperKubaShowcase product={product} />;
   }
 
   const Icon = product.icon;

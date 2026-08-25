@@ -88,6 +88,13 @@ export default function ProductsPage() {
 
                       <p>{product.description}</p>
 
+                      {product.capabilityLine ? (
+                        <div className="product-capability-line">
+                          <span>{product.capabilityLabel}</span>
+                          <p>{product.capabilityLine.join(" • ")}</p>
+                        </div>
+                      ) : null}
+
                       <div className="product-features">
                         {product.features.map((feature) => (
                           <div key={feature}>
@@ -98,7 +105,7 @@ export default function ProductsPage() {
                       </div>
 
                       <Link href={`/products/${product.slug}`} className="product-link">
-                        Learn more
+                        {product.ctaLabel ?? "Learn more"}
                         <ArrowRight size={17} />
                       </Link>
 

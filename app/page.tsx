@@ -38,7 +38,7 @@ const productPortfolio: ProductCardData[] = [
     description:
       "Create, deploy and manage intelligent digital employees that work alongside your human team.",
     availabilityStatus: "available",
-    website: "Realtegic.com",
+    website: "SuperKuba.com",
     route: "/products/kuba-ai",
     visual: "AI workforce",
     icon: BrainCircuit,

@@ -13,6 +13,13 @@ export type ProductData = ProductBrandFields & {
   summary: string;
   useCases: string[];
   availability: string;
+  cardDescription?: string;
+  capabilityLabel?: string;
+  capabilityLine?: string[];
+  ctaLabel?: string;
+  signupUrl?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 };
 
 export const products: ProductData[] = [
@@ -21,15 +28,22 @@ export const products: ProductData[] = [
     title: "SuperKuba",
     category: "AI WORKFORCE PLATFORM",
     description:
-      "An intelligent AI workforce that helps businesses automate customer communication, engagement and everyday operations.",
-    status: "AVAILABLE",
+      "Build an AI workforce for your business. Deploy intelligent digital employees that can answer calls, engage customers, generate leads, manage appointments, provide support, automate work and operate across your communication channels.",
+    status: "LIVE",
     number: "01",
     icon: BrainCircuit,
     logo: "/logos/superkuba-logo.png",
     logoAlt: "SuperKuba",
     logoWidth: 2172,
     logoHeight: 724,
-    externalUrl: "https://superkuba.ai",
+    externalUrl: "https://superkuba.com",
+    signupUrl: "https://superkuba.com/signup",
+    capabilityLabel: "CHANNEL ROADMAP",
+    capabilityLine: ["Voice", "WhatsApp", "Email", "Web Chat", "Automation"],
+    ctaLabel: "Explore SuperKuba",
+    seoTitle: "SuperKuba | AI Workforce Platform by Realtegic",
+    seoDescription:
+      "Discover SuperKuba, Realtegic's AI Workforce Platform for building and managing intelligent digital employees across sales, customer service, appointments, communications and business operations.",
     features: [
       "AI customer engagement",
       "Multi-channel communication",
@@ -43,7 +57,7 @@ export const products: ProductData[] = [
       "Sales follow-up and business communications",
       "Routine operational assistance across teams",
     ],
-    availability: "Currently positioned as an available product direction with practical business use cases and a clear operational value proposition.",
+    availability: "SuperKuba is live. Individual AI roles, communication channels, integrations and workflows remain subject to account configuration and rollout status.",
   },
   {
     slug: "realtegic-property",
