@@ -84,8 +84,8 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <Link href="/#platforms" className="btn btn-primary btn-md nav-cta">
-          Explore Realtegic
+        <Link href="/contact" className="btn btn-primary btn-md nav-cta">
+          Contact Us
         </Link>
 
         {/* Mobile Menu Button */}
@@ -162,11 +162,11 @@ export default function Header() {
             ))}
 
             <Link
-              href="/#platforms"
+              href="/contact"
               className="btn btn-primary btn-md mobile-nav-cta"
               onClick={closeMobileMenu}
             >
-              Explore Realtegic
+              Contact Us
             </Link>
           </div>
         </nav>

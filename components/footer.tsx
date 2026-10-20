@@ -1,88 +1,112 @@
 import Image from "next/image";
 import Link from "next/link";
+import FooterLink from "@/components/site/FooterLink";
+import styles from "@/components/site/footer.module.css";
+import { platforms } from "@/lib/infrastructure";
+import { products } from "@/lib/products";
 import { siteConfig } from "@/lib/site";
+
+const developerLinks = [
+  { label: "Developer Platform", href: "/developers" },
+  { label: "Infrastructure", href: "/infrastructure" },
+  { label: "Developer Cloud", href: "/infrastructure/developer-cloud" },
+];
+
+const companyLinks = [
+  { label: "About", href: "/about" },
+  { label: "Company", href: "/company" },
+  { label: "Careers", href: "/careers" },
+  { label: "News & Insights", href: "/insights" },
+  { label: "Innovation", href: "/innovation" },
+  { label: "Contact", href: "/contact" },
+];
+
+const legalLinks = [
+  { label: "Trust Center", href: "/trust" },
+  { label: "Security", href: "/security" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+];
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="footer-main container">
-        <div className="footer-brand">
-          <Link href="/" className="footer-logo">
+    <footer className={styles.footer}>
+      <div className={`${styles.wrap} ${styles.main}`}>
+        <div className={styles.brand}>
+          <Link href="/" className={styles.logo}>
             <Image
               src="/logos/realtegic-logo-2026-white.png"
               alt="Realtegic"
-              width={240}
-              height={80}
-              priority
-              className="footer-logo-image"
+              width={180}
+              height={60}
+              className={styles.logoImage}
             />
           </Link>
-
           <p>Building the technology behind what comes next.</p>
+          <a href={`mailto:${siteConfig.email}`} className={styles.link}>
+            {siteConfig.email}
+          </a>
         </div>
 
-        <div className="footer-column">
-          <h4>Infrastructure</h4>
-          <Link href="/infrastructure/ai-platform">AI Platform</Link>
-          <Link href="/infrastructure/communications-cloud">Communications Cloud</Link>
-          <Link href="/infrastructure/identity-cloud">Identity Cloud</Link>
-          <Link href="/infrastructure/integration-cloud">Integration Cloud</Link>
-          <Link href="/infrastructure/automation-cloud">Automation Cloud</Link>
-          <Link href="/infrastructure/data-intelligence-platform">Data &amp; Intelligence Platform</Link>
-          <Link href="/infrastructure/developer-cloud">Developer Cloud</Link>
-        </div>
+        <nav className={styles.column} aria-label="Infrastructure">
+          <h2>Infrastructure</h2>
+          {platforms.map((platform) => (
+            <FooterLink key={platform.slug} href={platform.route}>
+              {platform.name}
+            </FooterLink>
+          ))}
+        </nav>
 
-        <div className="footer-column">
-          <h4>Products</h4>
-          <Link href="/products/kuba-ai">SuperKuba</Link>
-          <Link href="/products/propertyos">PropertyOS</Link>
-          <Link href="/products/trustpay">TrustPay</Link>
-          <Link href="/products/tap-and-order">Tap &amp; Order</Link>
-          <Link href="/products/institution-platform">Institution Platform</Link>
-          <Link href="/products/mobility-platform">Mobility Platform</Link>
-        </div>
+        <nav className={styles.column} aria-label="Products">
+          <h2>Products</h2>
+          {products.map((product) => (
+            <FooterLink key={product.slug} href={`/products/${product.slug}`}>
+              {product.title}
+            </FooterLink>
+          ))}
+        </nav>
 
-        <div className="footer-column">
-          <h4>Developers</h4>
-          <Link href="/developers">Developer Platform</Link>
-          <Link href="/infrastructure">Infrastructure</Link>
-          <Link href="/developers">Developer Access</Link>
-        </div>
+        <nav className={styles.column} aria-label="Developers">
+          <h2>Developers</h2>
+          {developerLinks.map((link) => (
+            <FooterLink key={link.label} href={link.href}>
+              {link.label}
+            </FooterLink>
+          ))}
+        </nav>
 
-        <div className="footer-column">
-          <h4>Company</h4>
-          <Link href="/about">About</Link>
-          <Link href="/company">Company</Link>
-          <Link href="/innovation">Innovation</Link>
-          <Link href="/careers">Careers</Link>
-          <Link href="/insights">Insights</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
+        <nav className={styles.column} aria-label="Company">
+          <h2>Company</h2>
+          {companyLinks.map((link) => (
+            <FooterLink key={link.label} href={link.href}>
+              {link.label}
+            </FooterLink>
+          ))}
+        </nav>
 
-        <div className="footer-column">
-          <h4>Trust &amp; Legal</h4>
-          <Link href="/trust">Trust Center</Link>
-          <Link href="/security">Security</Link>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-          <span>{siteConfig.officeAddress[0]}</span>
-          <span>{siteConfig.officeAddress[1]}</span>
-          <span>
-            {siteConfig.phoneNumbers.map((phone, index) => (
-              <span key={phone.href}>
-                {index > 0 ? " / " : ""}
-                <a href={phone.href}>{phone.number}</a>
-              </span>
+        <div className={styles.column}>
+          <h2>Trust &amp; Legal</h2>
+          {legalLinks.map((link) => (
+            <FooterLink key={link.label} href={link.href}>
+              {link.label}
+            </FooterLink>
+          ))}
+          <address className={styles.address}>
+            {siteConfig.officeAddress.map((line) => (
+              <span key={line}>{line}</span>
             ))}
-          </span>
+            {siteConfig.phoneNumbers.map((phone) => (
+              <a key={phone.href} href={phone.href} className={styles.link}>
+                {phone.number}
+              </a>
+            ))}
+          </address>
         </div>
       </div>
 
-      <div className="footer-bottom container">
-        <span>Realtegic</span>
+      <div className={`${styles.wrap} ${styles.bottom}`}>
+        <span>© {new Date().getFullYear()} Realtegic. All rights reserved.</span>
         <span>Technology • Innovation • Impact</span>
-        <span>© 2026 Realtegic. All rights reserved.</span>
       </div>
     </footer>
   );

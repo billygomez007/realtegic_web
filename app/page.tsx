@@ -1,22 +1,30 @@
+import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight,
+  Boxes,
   BrainCircuit,
-  Layers3,
-  Network,
-  Workflow,
+  Building2,
+  Bus,
+  Car,
+  CreditCard,
+  Globe2,
+  Landmark,
+  Rocket,
+  ShieldCheck,
+  ShoppingBag,
+  Sparkles,
+  type LucideIcon,
 } from "lucide-react";
-import type { Metadata } from "next";
-import Button from "@/components/Button";
-import AfricaFirstSection from "@/components/AfricaFirstSection";
-import CTASection from "@/components/CTASection";
-import DeveloperSection from "@/components/DeveloperSection";
-import EcosystemArchitecture from "@/components/EcosystemArchitecture";
-import InfrastructureDiagram from "@/components/InfrastructureDiagram";
-import PlatformCard from "@/components/PlatformCard";
-import ProductCard, { type ProductCardData } from "@/components/ProductCard";
-import InnovationSection from "@/components/InnovationSection";
-import SectionEyebrow from "@/components/SectionEyebrow";
-import AfricaNetworkVisual from "@/components/AfricaNetworkVisual";
+import BigPicture from "@/components/home/BigPicture";
+import {
+  AiChipVisual,
+  ApproachVisual,
+  CodeLaptopVisual,
+  CtaGlobe,
+  HeroVisual,
+} from "@/components/home/HomeVisuals";
+import styles from "@/components/home/home.module.css";
 import { createPageMetadata } from "@/lib/metadata";
 import { platforms } from "@/lib/infrastructure";
 import { products } from "@/lib/products";
@@ -28,212 +36,367 @@ export const metadata: Metadata = createPageMetadata({
   path: "/",
 });
 
-const productPortfolio: ProductCardData[] = products.map((product) => ({
-  productName: product.title,
-  displayName: product.title,
-  slug: product.slug,
-  category: product.category,
-  description: product.cardDescription ?? product.description,
-  availabilityStatus: product.availabilityStatus,
-  website: product.websiteLabel,
-  route: `/products/${product.slug}`,
-  visual: product.visual,
-  icon: product.icon,
-  logo: product.logo,
-  logoAlt: product.logoAlt,
-  logoWidth: product.logoWidth,
-  logoHeight: product.logoHeight,
-  featured: product.featured ?? false,
-  ctaLabel: product.homepageCtaLabel ?? product.ctaLabel ?? "Learn more",
-  market: product.market,
-  statusLabel: product.homepageStatusLabel,
-}));
+const platformSummaries: Record<string, string> = {
+  "ai-platform": "Intelligent solutions for business, automation, data and innovation.",
+  "communications-cloud":
+    "Reliable and scalable communication infrastructure for modern businesses.",
+  "identity-cloud": "Secure identity and access management across all platforms.",
+  "integration-cloud": "Seamless APIs and integrations for a connected ecosystem.",
+  "automation-cloud":
+    "Workflow automation to streamline operations and reduce manual work.",
+  "data-intelligence-platform":
+    "Turn data into actionable insights with advanced analytics and AI.",
+  "developer-cloud": "Tools, SDKs and infrastructure for builders and innovators.",
+};
+
+const featuredPlatform = platforms.find((platform) => platform.featured) ?? platforms[0];
+const otherPlatforms = platforms.filter((platform) => platform !== featuredPlatform);
+
+const productTiles: {
+  slug: string;
+  tag: string;
+  icon: LucideIcon;
+  summary: string;
+}[] = [
+  {
+    slug: "propertyos",
+    tag: "Real Estate",
+    icon: Building2,
+    summary: "End-to-end real estate management for modern markets.",
+  },
+  {
+    slug: "trustpay",
+    tag: "Fintech",
+    icon: CreditCard,
+    summary: "Secure and simple payment solutions for businesses and individuals.",
+  },
+  {
+    slug: "tap-and-order",
+    tag: "Commerce",
+    icon: ShoppingBag,
+    summary: "A marketplace and business management platform for everyday services.",
+  },
+  {
+    slug: "institution-platform",
+    tag: "Institutions",
+    icon: Landmark,
+    summary: "Tools for organizations, agencies and large-scale operations.",
+  },
+  {
+    slug: "mobility-platform",
+    tag: "Mobility",
+    icon: Car,
+    summary: "Smart mobility solutions for connected cities and communities.",
+  },
+  {
+    slug: "kuba-ai",
+    tag: "AI Workforce",
+    icon: Boxes,
+    summary: "A unified AI workforce connecting multiple services and opportunities.",
+  },
+];
+
+const productCards = productTiles.flatMap((tile) => {
+  const product = products.find((item) => item.slug === tile.slug);
+  return product ? [{ ...tile, title: product.title }] : [];
+});
+
+const stats = [
+  { value: `${platforms.length}`, label: "Infrastructure Platforms" },
+  { value: `${products.length}`, label: "Integrated Products" },
+  { value: "1", label: "Unified Foundation" },
+  { value: "∞", label: "More Possibilities" },
+];
+
+const trustPoints = [
+  { icon: ShieldCheck, label: "Secure & Reliable" },
+  { icon: Bus, label: "Scalable Infrastructure" },
+  { icon: Rocket, label: "Built for Growth" },
+];
+
+const approachPoints = [
+  {
+    icon: Boxes,
+    title: "Scalable Architecture",
+    detail: "Built to support growth at every stage.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "Intelligent Systems",
+    detail: "Automation and AI for real impact.",
+  },
+  {
+    icon: Globe2,
+    title: "Global Standards",
+    detail: "Secure, reliable and future-ready.",
+  },
+];
 
 export default function Home() {
+  const FeaturedIcon = featuredPlatform.icon;
+
   return (
-    <main className="new-home">
-      <section className="new-hero">
-        <div className="new-wrap new-hero-grid">
-          <div className="hero-copy">
-            <SectionEyebrow>
-              BUILDING WHAT COMES NEXT
-            </SectionEyebrow>
-
-            <h1>
-              Building the Technology Behind{" "}
-              <span>What Comes Next.</span>
+    <main className={styles.home}>
+      {/* Hero */}
+      <section className={styles.hero}>
+        <div className={`${styles.wrap} ${styles.heroGrid}`}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>
+              Technology infrastructure for a smarter tomorrow
+            </p>
+            <h1 className={styles.heroTitle}>
+              Building the Technology Behind <span>What</span> Comes{" "}
+              <span>Next.</span>
             </h1>
-
-            <p>
-              We build digital infrastructure and intelligent platforms that power
-              businesses, developers and institutions.
+            <p className={styles.heroLead}>
+              Powering platforms, businesses and communities with scalable
+              infrastructure, intelligent systems and seamless connectivity.
             </p>
-
-            <div className="hero-actions">
-              <Button asLink href="#platforms" variant="primary" size="lg">
-                Explore Our Platforms
-                <ArrowRight size={17} />
-              </Button>
-
-              <Button asLink href="/products" variant="secondary" size="lg">
-                Explore Our Products
-              </Button>
+            <div className={styles.actions}>
+              <Link href="/products" className={styles.btnPrimary}>
+                Explore Our Products <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <Link href="/contact" className={styles.btnLight}>
+                Talk to Our Team
+              </Link>
             </div>
+            <ul className={styles.trustRow}>
+              {trustPoints.map(({ icon: Icon, label }) => (
+                <li key={label}>
+                  <Icon size={16} aria-hidden="true" />
+                  {label}
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <AfricaNetworkVisual />
+          <HeroVisual />
         </div>
       </section>
 
-      <section className="positioning-section" id="positioning">
-        <div className="new-wrap positioning-grid">
-          <div className="positioning-copy">
-            <SectionEyebrow>WHAT WE BUILD</SectionEyebrow>
-
-            <h2>
-              We Don&apos;t Just Build Products. We Build the Infrastructure
-              Behind Them.
+      {/* Approach */}
+      <section className={styles.section} id="approach">
+        <div className={`${styles.wrap} ${styles.approachGrid}`}>
+          <div>
+            <p className={styles.eyebrow}>Our approach</p>
+            <h2 className={styles.heading}>
+              We Don&apos;t Just Build Products. We Build the Infrastructure{" "}
+              <span>Behind Them.</span>
             </h2>
-
-            <p>
-              Realtegic develops reusable technology infrastructure first, then
-              uses that foundation to build its own applications and products.
+            <p className={styles.body}>
+              From cloud infrastructure to intelligent platforms, we design and
+              operate the systems that help businesses innovate, scale and create
+              real-world impact.
             </p>
+            <Link href="/about" className={styles.btnOutline}>
+              Learn More About Us <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </div>
 
-          <InfrastructureDiagram />
+          <div className={styles.approachMedia}>
+            <ApproachVisual />
+            <ul className={styles.approachCards}>
+              {approachPoints.map(({ icon: Icon, title, detail }) => (
+                <li key={title}>
+                  <span className={styles.iconTile}>
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <strong>{title}</strong>
+                    <small>{detail}</small>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section className="platforms-section" id="platforms">
-        <div className="new-wrap">
-          <div className="section-intro">
+      {/* Infrastructure platforms */}
+      <section className={styles.section} id="platforms">
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
             <div>
-              <SectionEyebrow>OUR TECHNOLOGY INFRASTRUCTURE</SectionEyebrow>
-              <h2>
-                Infrastructure
-                <span> Platforms</span>
+              <p className={styles.eyebrow}>Our ecosystem</p>
+              <h2 className={styles.heading}>
+                Infrastructure <span>Platforms</span>
               </h2>
             </div>
-
-            <p>
-              The foundational technologies powering Realtegic products and,
-              over time, the applications businesses and developers build on
-              Realtegic infrastructure.
+            <p className={styles.introText}>
+              A suite of integrated platforms and services designed to power
+              businesses, developers and communities across real estate,
+              commerce, mobility and beyond.
             </p>
           </div>
 
-          <div className="platform-grid">
-            {platforms.map((platform) => (
-              <PlatformCard key={platform.slug} platform={platform} />
+          <article className={styles.featuredCard}>
+            <div className={styles.featuredCopy}>
+              <p className={styles.featuredLabel}>
+                <span className={styles.iconTileSm}>
+                  <FeaturedIcon size={14} aria-hidden="true" />
+                </span>
+                Featured platform
+              </p>
+              <h3>{featuredPlatform.name}</h3>
+              <p>{platformSummaries[featuredPlatform.slug] ?? featuredPlatform.description}</p>
+              <Link href={featuredPlatform.route} className={styles.btnPrimarySm}>
+                Learn More <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+            <AiChipVisual />
+          </article>
+
+          <div className={styles.platformGrid}>
+            {otherPlatforms.map((platform) => {
+              const Icon = platform.icon;
+
+              return (
+                <article key={platform.slug} className={styles.platformCard}>
+                  <span className={styles.iconTile}>
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <h3>{platform.name}</h3>
+                  <p>{platformSummaries[platform.slug] ?? platform.description}</p>
+                  <Link href={platform.route} className={styles.textLink}>
+                    Learn More <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy */}
+      <section className={styles.section}>
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
+            <div>
+              <p className={styles.eyebrow}>Our philosophy</p>
+              <h2 className={styles.heading}>
+                One Technology Foundation. <span>Multiple Products.</span>
+              </h2>
+            </div>
+            <p className={styles.introText}>
+              A unified technology foundation that powers a family of products
+              and solutions, all working together to create greater value.
+            </p>
+          </div>
+
+          <dl className={styles.stats}>
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <dt>{stat.label}</dt>
+                <dd>{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Products */}
+      <section className={styles.products} id="products">
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
+            <div>
+              <p className={styles.eyebrowDark}>Real-world solutions</p>
+              <h2 className={styles.headingDark}>
+                Products &amp; <span>Applications</span>
+              </h2>
+            </div>
+            <div className={styles.introSide}>
+              <p className={styles.introTextDark}>
+                From real estate to commerce and mobility, our products deliver
+                practical solutions for everyday people and businesses.
+              </p>
+              <Link href="/products" className={styles.btnWhiteSm}>
+                View All Products <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.productGrid}>
+            {productCards.map(({ slug, tag, icon: Icon, title, summary }) => (
+              <article key={slug} className={styles.productCard}>
+                <div className={styles.productTop}>
+                  <Icon size={24} aria-hidden="true" />
+                  <span className={styles.tag}>{tag}</span>
+                </div>
+                <h3>{title}</h3>
+                <p>{summary}</p>
+                <Link href={`/products/${slug}`} className={styles.textLinkDark}>
+                  Learn More <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="suite-section" id="ecosystem">
-        <div className="new-wrap">
-          <div className="section-intro">
+      {/* Big picture */}
+      <section className={styles.section} id="ecosystem">
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
             <div>
-              <small>THE REALTEGIC ECOSYSTEM</small>
-              <h2>
-                One Technology Foundation.
-                <span> Multiple Products.</span>
+              <p className={styles.eyebrow}>The big picture</p>
+              <h2 className={styles.heading}>
+                One Technology Foundation. <span>Many Possibilities.</span>
               </h2>
             </div>
-
-            <p>
-              Our products share a common foundation across AI, communications,
-              identity, integrations, automation, data and developer
-              infrastructure.
+            <p className={styles.introText}>
+              Our ecosystem is designed to grow, adapt and create opportunities
+              across industries and communities.
             </p>
           </div>
-
-          <div className="suite-strip">
-            <div>
-              <BrainCircuit size={23} />
-              <strong>Infrastructure</strong>
-            </div>
-            <div>
-              <Workflow size={23} />
-              <strong>Platforms</strong>
-            </div>
-            <div>
-              <Network size={23} />
-              <strong>Products</strong>
-            </div>
-            <div>
-              <Layers3 size={23} />
-              <strong>Connectivity</strong>
-            </div>
-          </div>
-
+          <BigPicture />
         </div>
       </section>
 
-      <section className="products-section" id="products">
-        <div className="new-wrap">
-          <div className="section-intro section-intro--dark">
-            <div>
-              <SectionEyebrow>BUILT BY REALTEGIC</SectionEyebrow>
-              <h2>
-                Products
-                <span> & Applications</span>
-              </h2>
+      {/* Developers */}
+      <section className={styles.devSection} id="developers">
+        <div className={`${styles.wrap} ${styles.devGrid}`}>
+          <CodeLaptopVisual />
+          <div>
+            <p className={styles.eyebrow}>For developers</p>
+            <h2 className={styles.heading}>Built for What Developers Build Next.</h2>
+            <p className={styles.body}>
+              Powerful APIs, SDKs and infrastructure to help developers create,
+              integrate and scale with confidence.
+            </p>
+            <div className={styles.actions}>
+              <Link href="/developers" className={styles.btnPrimary}>
+                Explore the Developer Platform{" "}
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <Link href="/infrastructure/developer-cloud" className={styles.textLinkLg}>
+                View Documentation
+              </Link>
             </div>
-
-            <p>
-              Technology built to solve real problems across business,
-              property, finance, government, institutions and everyday life.
-            </p>
-          </div>
-
-          <div className="product-grid">
-            {productPortfolio.map((product) => (
-              <ProductCard key={product.slug} product={product} />
-            ))}
-          </div>
-
-          <div className="products-footer">
-            <p>
-              A growing portfolio of products that share the same infrastructure
-              foundation and design principles.
-            </p>
-
-            <Button asLink href="/products" variant="secondary" size="lg">
-              View All Products
-            </Button>
           </div>
         </div>
       </section>
 
-      <section className="ecosystem-section">
-        <div className="new-wrap">
-          <div className="ecosystem-heading">
-            <div>
-              <SectionEyebrow>REALTEGIC ECOSYSTEM</SectionEyebrow>
-              <h2>
-                One Technology Foundation.
-                <span> Many Possibilities.</span>
-              </h2>
-            </div>
-
-            <p>
-              Realtegic builds a shared technology foundation that powers our
-              products today and opens room for future applications tomorrow.
-            </p>
+      {/* CTA */}
+      <section className={styles.cta}>
+        <CtaGlobe />
+        <div className={`${styles.wrap} ${styles.ctaInner}`}>
+          <p className={styles.eyebrowDark}>
+            <Sparkles size={12} aria-hidden="true" /> Get started
+          </p>
+          <h2 className={styles.ctaTitle}>Let&apos;s Build What&apos;s Next.</h2>
+          <p className={styles.ctaText}>
+            Whether you&apos;re a business, developer or organization, Realtegic
+            gives you the technology, tools and support to move forward.
+          </p>
+          <div className={styles.actions}>
+            <Link href="/contact" className={styles.btnWhite}>
+              Contact Our Team <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            <Link href="/products" className={styles.btnGhost}>
+              Explore Our Products
+            </Link>
           </div>
-
-          <EcosystemArchitecture />
         </div>
       </section>
-
-      <DeveloperSection />
-      <AfricaFirstSection />
-      <InnovationSection />
-
-      <CTASection />
-
     </main>
   );
 }

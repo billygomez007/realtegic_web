@@ -1,33 +1,50 @@
+import Link from "next/link";
 import {
   ArrowRight,
+  ArrowUpRight,
+  AtSign,
   BadgeCheck,
+  BookOpen,
   Bot,
   BriefcaseBusiness,
   Calculator,
   CalendarDays,
+  ChartColumn,
   Check,
+  ChevronRight,
   CircleUserRound,
-  Headphones,
+  FileText,
   HeartPulse,
+  Headphones,
+  LayoutDashboard,
+  Mail,
   Megaphone,
   MessageCircle,
+  MessageSquareText,
   MessagesSquare,
+  Phone,
   PhoneIncoming,
   PhoneOutgoing,
   Plane,
+  Plug,
+  Plus,
+  Rocket,
   Scale,
+  Send,
+  Settings,
   Settings2,
   ShieldCheck,
   ShoppingBag,
   SlidersHorizontal,
+  Smartphone,
   Sparkles,
+  UserRound,
   Users,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
-import ProductBrandLogo from "@/components/ProductBrandLogo";
-import SectionEyebrow from "@/components/SectionEyebrow";
 import type { ProductData } from "@/lib/products";
+import styles from "@/components/superkuba/superkuba.module.css";
 
 type IconItem = {
   title: string;
@@ -101,15 +118,21 @@ const voiceCapabilities: IconItem[] = [
   },
 ];
 
-const channels = [
-  { name: "Voice", status: "In development" },
-  { name: "WhatsApp", status: "In development" },
-  { name: "Email", status: "In development" },
-  { name: "SMS", status: "In development" },
-  { name: "Web Chat", status: "Planned" },
-  { name: "Instagram", status: "Planned" },
-  { name: "Facebook", status: "Planned" },
-  { name: "Telegram", status: "Planned" },
+type Channel = {
+  name: string;
+  status: "In development" | "Planned";
+  icon: LucideIcon;
+};
+
+const channels: Channel[] = [
+  { name: "Voice", status: "In development", icon: Phone },
+  { name: "WhatsApp", status: "In development", icon: MessageCircle },
+  { name: "Email", status: "In development", icon: Mail },
+  { name: "SMS", status: "In development", icon: Smartphone },
+  { name: "Web Chat", status: "Planned", icon: MessageSquareText },
+  { name: "Instagram", status: "Planned", icon: AtSign },
+  { name: "Facebook", status: "Planned", icon: Users },
+  { name: "Telegram", status: "Planned", icon: Send },
 ];
 
 const knowledgeSources = [
@@ -119,18 +142,20 @@ const knowledgeSources = [
   "Documents",
   "Operating procedures",
   "Approved customer context",
-  "Business knowledge",
 ];
 
 const employeeControls = [
   "Name and role",
   "Communication tone",
-  "Business knowledge",
   "Languages",
-  "Connected tools",
-  "Permissions",
-  "Approval requirements",
   "Autonomy boundaries",
+];
+
+const controlToggles: { label: string; icon: LucideIcon }[] = [
+  { label: "Business knowledge", icon: BookOpen },
+  { label: "Connected tools", icon: Plug },
+  { label: "Permissions", icon: ShieldCheck },
+  { label: "Approval requirements", icon: BadgeCheck },
 ];
 
 const supportedActions = [
@@ -142,6 +167,12 @@ const supportedActions = [
   "Handle enquiries",
   "Trigger supported workflows",
   "Escalate for human approval",
+];
+
+const workforceTiers: { label: string; title: string; icon: LucideIcon }[] = [
+  { label: "Start with one", title: "AI Receptionist", icon: UserRound },
+  { label: "Build a pair", title: "Receptionist + Sales Assistant", icon: Users },
+  { label: "Grow over time", title: "A wider AI workforce", icon: Rocket },
 ];
 
 const useCases: IconItem[] = [
@@ -178,25 +209,150 @@ const useCases: IconItem[] = [
 ];
 
 const setupSteps = [
-  "Create your business account",
-  "Teach Kuba about your business",
-  "Choose your AI employees",
-  "Configure roles and permissions",
+  "Create your account and teach Kuba about your business",
+  "Choose and configure your AI employees",
   "Connect supported channels and tools",
-  "Deploy your AI workforce",
-  "Monitor and improve",
+  "Deploy, monitor and improve",
 ];
 
+const heroTraits: { label: string; icon: LucideIcon }[] = [
+  { label: "Role-based AI employees", icon: Bot },
+  { label: "Configurable permissions", icon: SlidersHorizontal },
+  { label: "Human oversight built in", icon: ShieldCheck },
+];
+
+const dashboardNav: { label: string; icon: LucideIcon }[] = [
+  { label: "Workforce", icon: Users },
+  { label: "Knowledge", icon: BookOpen },
+  { label: "Integrations", icon: Plug },
+  { label: "Analytics", icon: ChartColumn },
+  { label: "Settings", icon: Settings },
+];
+
+const dashboardEmployees: { name: string; icon: LucideIcon; tone: string; line: string }[] = [
+  { name: "Customer Support Agent", icon: Headphones, tone: "violet", line: "0,14 8,10 16,12 24,6 32,9 40,3" },
+  { name: "Sales Assistant", icon: BriefcaseBusiness, tone: "blue", line: "0,12 8,13 16,7 24,9 32,4 40,6" },
+  { name: "Operations Agent", icon: Settings2, tone: "green", line: "0,10 8,6 16,11 24,8 32,10 40,4" },
+  { name: "Knowledge Agent", icon: BookOpen, tone: "blue", line: "0,13 8,9 16,10 24,5 32,7 40,2" },
+];
+
+function WorkforceDashboard() {
+  return (
+    <div className={styles.dashboard} aria-hidden="true">
+      <div className={styles.dashFloat}>
+        <span className={styles.dashFloatIcon}>
+          <Sparkles size={15} />
+        </span>
+        <span>
+          <strong>AI Employees</strong>
+          <small>Working for your business</small>
+        </span>
+      </div>
+      <div className={styles.dashWindow}>
+        <aside className={styles.dashSide}>
+          <div className={styles.dashBrand}>
+            <LayoutDashboard size={13} />
+            SuperKuba
+          </div>
+          <ul>
+            {dashboardNav.map(({ label, icon: Icon }, index) => (
+              <li key={label} className={index === 0 ? styles.dashNavActive : undefined}>
+                <Icon size={12} />
+                {label}
+              </li>
+            ))}
+          </ul>
+        </aside>
+        <div className={styles.dashMain}>
+          <div className={styles.dashHead}>
+            <strong>AI Employees</strong>
+            <span className={styles.dashCreate}>
+              <Plus size={11} />
+              Create
+            </span>
+          </div>
+          <ul className={styles.dashList}>
+            {dashboardEmployees.map(({ name, icon: Icon, tone, line }) => (
+              <li key={name}>
+                <span className={`${styles.dashAvatar} ${styles[`tone_${tone}`]}`}>
+                  <Icon size={15} />
+                </span>
+                <span className={styles.dashName}>
+                  <strong>{name}</strong>
+                  <small>Active</small>
+                </span>
+                <svg viewBox="0 0 40 16" className={styles.dashSpark}>
+                  <polyline points={line} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className={styles.dashDots}>
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function KnowledgeVisual() {
+  return (
+    <div className={styles.knowledgeVisual} aria-hidden="true">
+      <div className={styles.docStack}>
+        <span />
+        <span />
+        <span className={styles.docTop}>
+          <FileText size={30} />
+        </span>
+      </div>
+      <div className={styles.docCard}>
+        <span className={styles.iconTileSm}>
+          <BookOpen size={14} />
+        </span>
+        <span>
+          Docs, FAQs,
+          <br />
+          policies &amp; procedures
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ScaleVisual() {
+  return (
+    <div className={styles.scaleVisual} aria-hidden="true">
+      <div className={styles.scaleGlow} />
+      <div className={styles.scaleCube}>
+        <UserRound size={44} />
+      </div>
+      <div className={styles.scaleCard}>
+        <span className={styles.scaleCardIcon}>
+          <ArrowUpRight size={15} />
+        </span>
+        <span>
+          <strong>Scale</strong>
+          <small>your AI workforce</small>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function Sparkle({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function SuperKubaShowcase({ product }: { product: ProductData }) {
-  if (
-    !product.logo ||
-    !product.logoAlt ||
-    !product.logoWidth ||
-    !product.logoHeight ||
-    !product.externalUrl ||
-    !product.signupUrl
-  ) {
-    throw new Error("SuperKuba showcase requires complete brand and destination configuration.");
+  if (!product.externalUrl || !product.signupUrl) {
+    throw new Error("SuperKuba showcase requires complete destination configuration.");
   }
 
   const externalLinkProps = {
@@ -204,126 +360,112 @@ export default function SuperKubaShowcase({ product }: { product: ProductData })
     rel: "noopener noreferrer",
   } as const;
 
+  const exploreLink = (className: string) => (
+    <a href={product.externalUrl} className={className} {...externalLinkProps}>
+      Explore SuperKuba
+      <ArrowRight size={16} aria-hidden="true" />
+    </a>
+  );
+
   return (
-    <main className="superkuba-showcase">
-      <section className="superkuba-hero">
-        <div className="new-wrap superkuba-hero__grid">
-          <div className="superkuba-hero__copy">
-            <ProductBrandLogo
-              src={product.logo}
-              alt={product.logoAlt}
-              width={product.logoWidth}
-              height={product.logoHeight}
-              sizes="(max-width: 650px) calc(100vw - 64px), 360px"
-              className="superkuba-hero__logo"
-            />
-            <SectionEyebrow>A REALTEGIC PRODUCT</SectionEyebrow>
-            <h1>
+    <main className={styles.page}>
+      {/* Hero */}
+      <section className={styles.hero}>
+        <Sparkle className={styles.sparkleA} />
+        <Sparkle className={styles.sparkleB} />
+        <div className={`${styles.wrap} ${styles.heroGrid}`}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrowDark}>SuperKuba · A Realtegic product</p>
+            <h1 className={styles.heroTitle}>
               Build Your <span>AI Workforce.</span>
             </h1>
-            <p>
+            <p className={styles.heroLead}>
               SuperKuba enables businesses to create, deploy and manage intelligent
               digital employees that work alongside human teams across customer
               service, sales, appointments, operations and everyday business
               processes.
             </p>
-            <div className="superkuba-actions">
-              <a
-                href={product.signupUrl}
-                className="superkuba-button superkuba-button--primary"
-                {...externalLinkProps}
-              >
-                Start with SuperKuba
-                <ArrowRight size={17} />
-              </a>
-              <a
-                href={product.externalUrl}
-                className="superkuba-button superkuba-button--secondary"
-                {...externalLinkProps}
-              >
-                Visit SuperKuba
+            <div className={styles.actions}>
+              {exploreLink(styles.btnWhite)}
+              <a href={product.signupUrl} className={styles.btnGhost} {...externalLinkProps}>
+                Get started
               </a>
             </div>
-          </div>
-
-          <div className="superkuba-workforce-preview">
-            <div className="superkuba-workforce-preview__header">
-              <span>YOUR AI WORKFORCE</span>
-              <strong>LIVE</strong>
-            </div>
-            <div className="superkuba-workforce-preview__roles">
-              {aiEmployees.slice(0, 4).map(({ title, icon: Icon }) => (
-                <div key={title}>
-                  <span aria-hidden="true">
-                    <Icon size={19} />
+            <ul className={styles.traits}>
+              {heroTraits.map(({ label, icon: Icon }) => (
+                <li key={label}>
+                  <span className={styles.traitIcon} aria-hidden="true">
+                    <Icon size={15} />
                   </span>
-                  <strong>{title.replace("AI ", "")}</strong>
-                  <small>Choose when needed</small>
-                </div>
+                  {label}
+                </li>
               ))}
-            </div>
-            <p>Start with one role. Add more as your business grows.</p>
+            </ul>
           </div>
+          <WorkforceDashboard />
         </div>
       </section>
 
-      <section className="superkuba-section superkuba-section--soft">
-        <div className="new-wrap">
-          <div className="superkuba-section__intro">
+      {/* AI employees */}
+      <section className={styles.section}>
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
             <div>
-              <SectionEyebrow>YOUR BUSINESS. YOUR AI WORKFORCE.</SectionEyebrow>
-              <h2>
+              <p className={styles.eyebrow}>AI employees for every team</p>
+              <h2 className={styles.heading}>
                 Specialized AI employees, <span>working as one team.</span>
               </h2>
             </div>
-            <p>
+            <p className={styles.introText}>
               Instead of using AI only as a chatbot or occasional assistant,
               SuperKuba lets a business build a team of specialized AI employees
               with defined roles, knowledge, tools and permissions.
             </p>
           </div>
-
-          <div className="superkuba-role-grid">
+          <div className={styles.roleGrid}>
             {aiEmployees.map(({ title, description, icon: Icon }) => (
-              <article key={title} className="superkuba-role-card">
-                <span className="superkuba-icon" aria-hidden="true">
-                  <Icon size={21} />
-                </span>
-                <small>AI EMPLOYEE</small>
+              <article key={title} className={styles.roleCard}>
+                <div className={styles.roleTop}>
+                  <span className={styles.iconTile} aria-hidden="true">
+                    <Icon size={19} />
+                  </span>
+                  <ArrowRight size={15} className={styles.roleArrow} aria-hidden="true" />
+                </div>
                 <h3>{title}</h3>
                 <p>{description}</p>
               </article>
             ))}
           </div>
-          <p className="superkuba-disclaimer">
+          <p className={styles.note}>
             Role availability and actions depend on account configuration,
             connected tools, permissions and rollout status.
           </p>
         </div>
       </section>
 
-      <section className="superkuba-section superkuba-voice">
-        <div className="new-wrap superkuba-voice__grid">
-          <div className="superkuba-voice__copy">
-            <span className="superkuba-status superkuba-status--development">
-              IN DEVELOPMENT
-            </span>
-            <SectionEyebrow>VOICE CAPABILITIES</SectionEyebrow>
-            <h2>
+      {/* Voice */}
+      <section className={styles.dark}>
+        <div className={`${styles.wrap} ${styles.voiceGrid}`}>
+          <div>
+            <p className={styles.eyebrowDark}>
+              Voice capabilities
+              <span className={styles.statusPill}>In development</span>
+            </p>
+            <h2 className={styles.headingDark}>
               AI that can <span>talk to your customers.</span>
             </h2>
-            <p>
+            <p className={styles.bodyDark}>
               SuperKuba&apos;s communications architecture is being developed to
               support voice interactions. Voice capabilities are not presented as
               generally available until enabled for a customer&apos;s account.
             </p>
+            {exploreLink(styles.btnPrimary)}
           </div>
-
-          <div className="superkuba-voice__cards">
+          <div className={styles.voiceTiles}>
             {voiceCapabilities.map(({ title, description, icon: Icon }) => (
-              <article key={title}>
-                <span className="superkuba-icon superkuba-icon--dark" aria-hidden="true">
-                  <Icon size={20} />
+              <article key={title} className={styles.darkTile}>
+                <span className={styles.iconTileDark} aria-hidden="true">
+                  <Icon size={19} />
                 </span>
                 <h3>{title}</h3>
                 <p>{description}</p>
@@ -333,40 +475,38 @@ export default function SuperKubaShowcase({ product }: { product: ProductData })
         </div>
       </section>
 
-      <section className="superkuba-section">
-        <div className="new-wrap">
-          <div className="superkuba-section__intro">
+      {/* Channels */}
+      <section className={styles.section}>
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
             <div>
-              <SectionEyebrow>MEET CUSTOMERS WHERE THEY ARE</SectionEyebrow>
-              <h2>
+              <p className={styles.eyebrow}>Meet customers where they are</p>
+              <h2 className={styles.heading}>
                 One workforce. <span>Multiple channels.</span>
               </h2>
             </div>
-            <p>
+            <p className={styles.introText}>
               SuperKuba is designed around connected customer communication.
               Channel availability remains tied to rollout and account
               configuration.
             </p>
           </div>
-
-          <div className="superkuba-channel-grid">
-            {channels.map((channel) => (
-              <div key={channel.name}>
-                <MessageCircle size={19} aria-hidden="true" />
-                <strong>{channel.name}</strong>
-                <span
-                  className={`superkuba-status ${
-                    channel.status === "Planned"
-                      ? "superkuba-status--planned"
-                      : "superkuba-status--development"
-                  }`}
-                >
-                  {channel.status}
+          <ul className={styles.channelGrid}>
+            {channels.map(({ name, status, icon: Icon }) => (
+              <li key={name} className={styles.channelTile}>
+                <span className={styles.iconTile} aria-hidden="true">
+                  <Icon size={18} />
                 </span>
-              </div>
+                <span>
+                  <strong>{name}</strong>
+                  <small className={status === "Planned" ? styles.planned : styles.inDev}>
+                    {status}
+                  </small>
+                </span>
+              </li>
             ))}
-          </div>
-          <p className="superkuba-disclaimer">
+          </ul>
+          <p className={styles.note}>
             Voice, WhatsApp, email and SMS are identified in the current Realtegic
             communications roadmap as in development. Social and additional chat
             channels are shown as planned.
@@ -374,189 +514,210 @@ export default function SuperKubaShowcase({ product }: { product: ProductData })
         </div>
       </section>
 
-      <section className="superkuba-section superkuba-section--soft">
-        <div className="new-wrap superkuba-control-grid">
-          <article className="superkuba-control-card">
-            <span className="superkuba-icon" aria-hidden="true">
-              <Bot size={22} />
-            </span>
-            <SectionEyebrow>TEACH KUBA ABOUT YOUR BUSINESS</SectionEyebrow>
-            <h2>Your business knowledge becomes useful context.</h2>
-            <p>
-              Approved information helps configured AI employees represent and
-              assist the organization more effectively without implying autonomous
-              decision-making.
-            </p>
-            <ul>
-              {knowledgeSources.map((item) => (
-                <li key={item}>
-                  <Check size={15} />
-                  {item}
-                </li>
-              ))}
-            </ul>
+      {/* Knowledge + controls */}
+      <section className={styles.section}>
+        <div className={`${styles.wrap} ${styles.panelRow}`}>
+          <article className={styles.panelLight}>
+            <div className={styles.panelCopy}>
+              <p className={styles.eyebrowBlue}>Your business, your context</p>
+              <h2 className={styles.panelHeading}>
+                Your business knowledge becomes <span>useful context.</span>
+              </h2>
+              <p className={styles.panelText}>
+                Approved information helps configured AI employees represent and
+                assist the organization more effectively.
+              </p>
+              <ul className={styles.checkList}>
+                {knowledgeSources.map((item) => (
+                  <li key={item}>
+                    <span className={styles.checkDot} aria-hidden="true">
+                      <Check size={11} strokeWidth={3} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <KnowledgeVisual />
           </article>
 
-          <article className="superkuba-control-card superkuba-control-card--dark">
-            <span className="superkuba-icon superkuba-icon--dark" aria-hidden="true">
-              <SlidersHorizontal size={22} />
-            </span>
-            <SectionEyebrow>YOUR AI EMPLOYEES. YOUR RULES.</SectionEyebrow>
-            <h2>Configure how each employee should work.</h2>
-            <p>
-              Businesses remain in control of role definitions, access,
-              approvals and boundaries.
+          <article className={styles.panelDark}>
+            <p className={styles.eyebrowDark}>Configure and control</p>
+            <h2 className={styles.panelHeadingDark}>
+              Configure how each employee should work.
+            </h2>
+            <p className={styles.panelTextDark}>
+              Businesses remain in control of role definitions, access, approvals
+              and boundaries.
             </p>
-            <ul>
-              {employeeControls.map((item) => (
-                <li key={item}>
-                  <Check size={15} />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className={styles.controlBody}>
+              <ul className={styles.checkListDark}>
+                {employeeControls.map((item) => (
+                  <li key={item}>
+                    <span className={styles.checkDotSolid} aria-hidden="true">
+                      <Check size={11} strokeWidth={3} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <ul className={styles.toggleList} aria-label="Configurable settings">
+                {controlToggles.map(({ label, icon: Icon }) => (
+                  <li key={label}>
+                    <span className={styles.toggleIcon} aria-hidden="true">
+                      <Icon size={12} />
+                    </span>
+                    <span className={styles.toggleLabel}>{label}</span>
+                    <span className={styles.toggle} aria-hidden="true" />
+                  </li>
+                ))}
+              </ul>
+            </div>
           </article>
         </div>
       </section>
 
-      <section className="superkuba-section">
-        <div className="new-wrap superkuba-action-grid">
-          <div className="superkuba-action-copy">
-            <SectionEyebrow>MORE THAN CONVERSATION</SectionEyebrow>
-            <h2>
+      {/* Actions */}
+      <section className={styles.section}>
+        <div className={`${styles.wrap} ${styles.actionsGrid}`}>
+          <div>
+            <p className={styles.eyebrow}>From conversations to actions</p>
+            <h2 className={styles.heading}>
               Turn customer interactions into <span>supported actions.</span>
             </h2>
-            <p>
+          </div>
+          <div>
+            <p className={styles.introText}>
               SuperKuba is intended to help configured AI employees carry work
               through supported business processes, not simply answer questions.
             </p>
-          </div>
-          <div className="superkuba-action-list">
-            {supportedActions.map((action) => (
-              <div key={action}>
-                <Check size={16} />
-                <span>{action}</span>
-              </div>
-            ))}
+            <ul className={styles.actionList}>
+              {supportedActions.map((action) => (
+                <li key={action}>
+                  <span className={styles.iconTileSm} aria-hidden="true">
+                    <Check size={13} strokeWidth={2.6} />
+                  </span>
+                  <span className={styles.actionLabel}>{action}</span>
+                  <ChevronRight size={15} className={styles.actionChevron} aria-hidden="true" />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="superkuba-section superkuba-team">
-        <div className="new-wrap">
-          <div className="superkuba-team__intro">
-            <SectionEyebrow>BUILT TO WORK WITH YOUR TEAM</SectionEyebrow>
-            <h2>Start with what you need. Expand when you are ready.</h2>
-            <p>
+      {/* Tiers */}
+      <section className={`${styles.dark} ${styles.tierSection}`}>
+        <div className={`${styles.wrap} ${styles.tierGrid}`}>
+          <div className={styles.tierCopy}>
+            <p className={styles.eyebrowDark}>Built to work with your team</p>
+            <h2 className={styles.headingDark}>
+              Start with what you need. Expand when you are ready.
+            </h2>
+            <p className={styles.bodyDark}>
               SuperKuba is not simply about replacing an entire workforce. Human
               employees can supervise, approve, intervene and take over where
               appropriate.
             </p>
+            <div className={styles.tierCards}>
+              {workforceTiers.map(({ label, title, icon: Icon }) => (
+                <article key={title} className={styles.tierCard}>
+                  <span className={styles.iconTileDark} aria-hidden="true">
+                    <Icon size={16} />
+                  </span>
+                  <span>
+                    <small>{label}</small>
+                    <h3>{title}</h3>
+                  </span>
+                </article>
+              ))}
+            </div>
+            <div className={styles.actions}>
+              {exploreLink(styles.btnPrimary)}
+              <Link href="/contact" className={styles.btnGhost}>
+                Talk to Our Team
+              </Link>
+            </div>
           </div>
-          <div className="superkuba-team__options">
-            <article>
-              <small>START WITH ONE</small>
-              <strong>AI Receptionist</strong>
-            </article>
-            <article>
-              <small>BUILD A PAIR</small>
-              <strong>Receptionist + Sales Assistant</strong>
-            </article>
-            <article>
-              <small>GROW OVER TIME</small>
-              <strong>A wider AI workforce</strong>
-            </article>
-          </div>
-          <div className="superkuba-human-control">
-            <Users size={22} />
-            <span>Human oversight remains part of the operating model.</span>
-            <ShieldCheck size={22} />
-          </div>
+          <ScaleVisual />
         </div>
       </section>
 
-      <section className="superkuba-section superkuba-section--soft">
-        <div className="new-wrap">
-          <div className="superkuba-section__intro">
+      {/* Use cases */}
+      <section className={styles.section}>
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
             <div>
-              <SectionEyebrow>BUSINESS USE CASES</SectionEyebrow>
-              <h2>
+              <p className={styles.eyebrow}>Business use cases</p>
+              <h2 className={styles.heading}>
                 Designed around <span>practical work.</span>
               </h2>
             </div>
-            <p>
+            <p className={styles.introText}>
               A flexible workforce architecture can support more industries as
               roles, integrations and workflows expand.
             </p>
           </div>
-          <div className="superkuba-use-case-grid">
+          <div className={styles.useGrid}>
             {useCases.map(({ title, description, icon: Icon }) => (
-              <article key={title}>
-                <span className="superkuba-icon" aria-hidden="true">
-                  <Icon size={20} />
+              <article key={title} className={styles.useTile}>
+                <span className={styles.iconTile} aria-hidden="true">
+                  <Icon size={18} />
                 </span>
-                <h3>{title}</h3>
-                <p>{description}</p>
+                <span>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </span>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="superkuba-section">
-        <div className="new-wrap">
-          <div className="superkuba-section__intro">
+      {/* Steps */}
+      <section className={`${styles.section} ${styles.lastSection}`}>
+        <div className={styles.wrap}>
+          <div className={styles.intro}>
             <div>
-              <SectionEyebrow>HOW IT WORKS</SectionEyebrow>
-              <h2>
+              <p className={styles.eyebrow}>A simple path</p>
+              <h2 className={styles.heading}>
                 From business context to <span>deployed workforce.</span>
               </h2>
             </div>
-            <p>A clear journey keeps configuration understandable and controlled.</p>
+            <p className={styles.introText}>
+              A clear journey keeps configuration understandable and controlled.
+            </p>
           </div>
-          <ol className="superkuba-steps">
+          <ol className={styles.steps}>
             {setupSteps.map((step, index) => (
               <li key={step}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{step}</strong>
+                <span className={styles.stepNum} aria-hidden="true">
+                  {index + 1}
+                </span>
+                <span className={styles.stepLabel}>{step}</span>
+                {index < setupSteps.length - 1 && (
+                  <ChevronRight size={16} className={styles.stepArrow} aria-hidden="true" />
+                )}
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="superkuba-final-cta">
-        <div className="new-wrap">
-          <ProductBrandLogo
-            src={product.logo}
-            alt=""
-            width={product.logoWidth}
-            height={product.logoHeight}
-            sizes="(max-width: 650px) calc(100vw - 80px), 280px"
-            className="superkuba-final-cta__logo"
-          />
-          <h2>Ready to build your AI workforce?</h2>
-          <p>
+      {/* CTA */}
+      <section className={styles.cta}>
+        <div className={`${styles.wrap} ${styles.ctaInner}`}>
+          <h2 className={styles.ctaTitle}>Ready to build your AI workforce?</h2>
+          <p className={styles.ctaText}>
             Discover how SuperKuba can help your business deploy intelligent
             digital employees across customer communication and everyday
             operations.
           </p>
-          <div className="superkuba-actions superkuba-actions--center">
-            <a
-              href={product.signupUrl}
-              className="superkuba-button superkuba-button--primary"
-              {...externalLinkProps}
-            >
-              Get Started with SuperKuba
-              <ArrowRight size={17} />
-            </a>
-            <a
-              href={product.externalUrl}
-              className="superkuba-button superkuba-button--secondary"
-              {...externalLinkProps}
-            >
-              Visit SuperKuba.com
-            </a>
+          <div className={`${styles.actions} ${styles.actionsCenter}`}>
+            {exploreLink(styles.btnPrimary)}
+            <Link href="/contact" className={styles.btnGhost}>
+              Talk to Our Team
+            </Link>
           </div>
         </div>
       </section>

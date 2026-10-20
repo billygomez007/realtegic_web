@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { notFound } from "next/navigation";
-import SectionEyebrow from "@/components/SectionEyebrow";
+import {
+  CtaWave,
+  InfraHeroDiagram,
+  InfraValueDiagram,
+} from "@/components/infrastructure/InfraDiagrams";
+import styles from "@/components/infrastructure/infra.module.css";
 import {
   createBreadcrumbJsonLd,
   createPageMetadata,
   serializeJsonLd,
 } from "@/lib/metadata";
 import { platformBySlug, platformDetails, platforms } from "@/lib/infrastructure";
+import { infrastructurePages } from "@/lib/infrastructure-pages";
+
+const toneClasses = [styles.toneBlue, styles.tonePurple, styles.toneGreen, styles.toneOrange];
 
 export function generateStaticParams() {
   return platforms.map((platform) => ({ slug: platform.slug }));
@@ -44,12 +52,12 @@ export default async function InfrastructureDetailPage({
 }) {
   const { slug } = await params;
   const platform = platformBySlug[slug];
+  const content = infrastructurePages[slug];
 
-  if (!platform) {
+  if (!platform || !content) {
     notFound();
   }
 
-  const Icon = platform.icon;
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Infrastructure", path: "/infrastructure" },
@@ -68,100 +76,123 @@ export default async function InfrastructureDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
-      <main className="new-home">
-      <section className="new-hero infrastructure-hero">
-        <div className="new-wrap new-hero-grid">
-          <div className="hero-copy">
-            <SectionEyebrow>{platform.category}</SectionEyebrow>
-            <h1>
-              {platform.name}
-              <span> for connected digital systems.</span>
-            </h1>
-            <p>{details.summary}</p>
-            <div className="hero-actions">
-              <Link href="/infrastructure" className="rt-btn rt-btn-primary">
-                Back to infrastructure
-                <ArrowRight size={17} />
-              </Link>
-              <Link href="/products" className="rt-btn rt-btn-outline">
-                View products
-              </Link>
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <div className={`${styles.wrap} ${styles.heroGrid}`}>
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>{platform.category}</p>
+              <h1 className={styles.heroTitle}>
+                {platform.name} <span>for connected digital systems.</span>
+              </h1>
+              <p className={styles.heroLead}>{details.summary}</p>
+              <div className={styles.actions}>
+                <Link href="/infrastructure" className={styles.btnPrimary}>
+                  Back to Infrastructure <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+                <Link href="/products" className={styles.btnOutline}>
+                  View Products
+                </Link>
+              </div>
+              <ul className={styles.traits}>
+                {content.traits.map(({ icon: Icon, title, detail }) => (
+                  <li key={title}>
+                    <span className={styles.traitIcon}>
+                      <Icon size={18} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <strong>{title}</strong>
+                      <small>{detail}</small>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <InfraHeroDiagram content={content} />
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.wrap}>
+            <div className={styles.intro}>
+              <div>
+                <p className={styles.eyebrow}>Capabilities</p>
+                <h2 className={styles.heading}>
+                  What this foundation <span>enables.</span>
+                </h2>
+              </div>
+              <p className={styles.introText}>{details.availability}</p>
+            </div>
+
+            <div className={styles.capGrid}>
+              {details.capabilities.map((title, index) => {
+                const capability = content.capabilities[index];
+                const Icon = capability?.icon ?? content.heroIcon;
+                const tone = toneClasses[index % toneClasses.length];
+
+                return (
+                  <article key={title} className={`${styles.capCard} ${tone}`}>
+                    <span className={styles.capNumber}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className={styles.capBody}>
+                      <span className={styles.capIcon}>
+                        <Icon size={28} aria-hidden="true" />
+                      </span>
+                      <div>
+                        <h3>{title}</h3>
+                        {capability ? <p>{capability.description}</p> : null}
+                      </div>
+                      <span className={styles.capArrow} aria-hidden="true">
+                        <ArrowRight size={16} />
+                      </span>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
+        </section>
 
-          <div className="platform-card platform-card--featured" style={{ padding: 32 }}>
-            <div className="platform-card__top">
-              <div className="platform-card__icon" aria-hidden="true">
-                <Icon size={26} />
-              </div>
-              <span className="status-badge status-badge--dark">{platform.lifecycleStatus}</span>
-            </div>
-            <div className="platform-card__body">
-              <div className="platform-card__content">
-                <small>{platform.category}</small>
-                <h3>{platform.name}</h3>
-                <p>{platform.description}</p>
-                <div className="platform-card__meta">
-                  <span>{platform.publicAvailability ? "Public preview available" : "Not publicly available"}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="platforms-section">
-        <div className="new-wrap">
-          <div className="section-intro">
+        <section className={styles.value}>
+          <div className={`${styles.wrap} ${styles.valueGrid}`}>
             <div>
-              <SectionEyebrow>CAPABILITIES</SectionEyebrow>
-              <h2>
-                What this <span>foundation enables</span>
+              <p className={styles.eyebrow}>Value</p>
+              <h2 className={styles.heading}>
+                Designed to compound <span>over time.</span>
               </h2>
+              <ul className={styles.checks}>
+                {details.outcomes.map((outcome) => (
+                  <li key={outcome}>
+                    <span>
+                      <Check size={13} strokeWidth={3} aria-hidden="true" />
+                    </span>
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p>{details.availability}</p>
+            <InfraValueDiagram content={content} />
           </div>
+        </section>
 
-          <div className="platform-grid">
-            {details.capabilities.map((capability, index) => (
-              <article key={capability} className="platform-card">
-                <div className="platform-card__top">
-                  <div className="platform-card__icon" aria-hidden="true">
-                    <CheckCircle2 size={22} />
-                  </div>
-                  <span className="status-badge status-badge--dark">0{index + 1}</span>
-                </div>
-                <div className="platform-card__body">
-                  <div className="platform-card__content">
-                    <h3>{capability}</h3>
-                  </div>
-                </div>
-              </article>
-            ))}
+        <section className={styles.cta}>
+          <CtaWave />
+          <div className={`${styles.wrap} ${styles.ctaInner}`}>
+            <p className={styles.eyebrowLight}>{content.cta.eyebrow}</p>
+            <h2 className={styles.ctaTitle}>{content.cta.title}</h2>
+            <p className={styles.ctaText}>
+              Learn how {platform.name} fits into the broader Realtegic ecosystem.
+            </p>
+            <div className={styles.actions}>
+              <Link href="/products" className={styles.btnWhite}>
+                Explore All Products <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <Link href="/contact" className={styles.btnGhost}>
+                Talk to Our Team
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="infrastructure-summary">
-        <div className="new-wrap infrastructure-summary-grid">
-          <div>
-            <SectionEyebrow>VALUE</SectionEyebrow>
-            <h2>
-              Designed to <span>compound over time.</span>
-            </h2>
-          </div>
-          <div>
-            <ul className="list-checks" style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {details.outcomes.map((outcome) => (
-                <li key={outcome} style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 16 }}>
-                  <CheckCircle2 size={18} style={{ marginTop: 4 }} />
-                  <span>{outcome}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+        </section>
       </main>
     </>
   );
